@@ -2,6 +2,7 @@ package com.sw9.swe.controller.sign;
 
 import com.sw9.swe.controller.response.Response;
 import com.sw9.swe.dto.sign.CreateStudentRequest;
+import com.sw9.swe.dto.sign.SignInRequest;
 import com.sw9.swe.service.sign.SignService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,13 @@ public class SignController {
 
     @GetMapping("/api/test")
     public Response test() {
+        return success();
+    }
+
+    @PostMapping("/api/sign-in")
+    @ResponseStatus(HttpStatus.OK)
+    public Response signIn(@RequestBody SignInRequest signInRequest) {
+        signService.signIn(signInRequest);
         return success();
     }
 }
