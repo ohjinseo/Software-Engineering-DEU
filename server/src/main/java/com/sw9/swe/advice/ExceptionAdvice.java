@@ -2,6 +2,7 @@ package com.sw9.swe.advice;
 
 import com.sw9.swe.controller.response.Response;
 import com.sw9.swe.exception.StudentNotFoundException;
+import com.sw9.swe.exception.StudentRegistrationNumberAlreadyExistsException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,5 +16,11 @@ public class ExceptionAdvice {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Response studentNotFoundException() {
         return Response.failure(-1000, "학생을 찾지 못하였습니다.");
+    }
+
+    @ExceptionHandler(StudentRegistrationNumberAlreadyExistsException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public Response studentRegistrationNumberAlreadyExistsException(StudentRegistrationNumberAlreadyExistsException e) {
+        return Response.failure(-1001, e.getMessage() + "은 이미 존재하는 학번입니다.");
     }
 }

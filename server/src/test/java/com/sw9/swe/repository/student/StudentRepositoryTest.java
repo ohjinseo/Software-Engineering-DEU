@@ -12,9 +12,11 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import java.util.List;
+
+import static com.sw9.swe.factory.entity.CartFactory.createCart;
 import static com.sw9.swe.factory.entity.StudentFactory.createStudent;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -45,13 +47,21 @@ class StudentRepositoryTest {
     }
 
     @Test
-    void studentAndCartCascadeTest() {
+    void studentAndCartCascadeDeleteTest() throws Exception {
         // given
-        Student student = createStudent();
+        Cart cart = createCart();
+        cartRepository.save(cart);
+        Student student = createStudent(cart);
+        studentRepository.save(student);
+        clear();
 
         // when
-        studentRepository.save(student);
+        studentRepository.deleteById(student.getId());
+        clear();
 
+        // then
+        List<Cart> carts = cartRepository.findAll();
+        assertThat(carts.size()).isZero();
     }
 
 

@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class CartFactory {
     public static Cart createCart() {
-        return Cart.builder().courses(Collections.EMPTY_LIST).build();
+        return Cart.builder().courses(Collections.emptyList()).build();
     }
 
     public static Cart createCart(List<Course> courses) {
