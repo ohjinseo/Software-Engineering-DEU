@@ -1,5 +1,6 @@
 package com.sw9.swe.domain.course;
 
+import com.sw9.swe.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Course {
+public class Course extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
