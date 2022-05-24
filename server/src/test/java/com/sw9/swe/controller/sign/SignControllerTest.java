@@ -8,6 +8,7 @@ import com.sw9.swe.dto.sign.SignInRequest;
 import com.sw9.swe.exception.LoginFailureException;
 import com.sw9.swe.exception.StudentRegistrationNumberAlreadyExistsException;
 import com.sw9.swe.service.sign.SignService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -29,6 +30,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class SignControllerTest {
     @Autowired
     private MockMvc mockMvc;
+    @Autowired
+    SignService signService;
 
     ObjectMapper objectMapper = new ObjectMapper();
 
@@ -47,7 +50,10 @@ class SignControllerTest {
     @Test
     void signInTest() throws Exception {
         // given
-        SignInRequest request = createSignInRequest();
+        Long id = 12345678L;
+        String password = "12345678";
+        signService.createStudent(createStudentCreateRequest(id, password));
+        SignInRequest request = createSignInRequest(id, password);
 
         // when, then
         mockMvc.perform(post("/api/sign-in")
