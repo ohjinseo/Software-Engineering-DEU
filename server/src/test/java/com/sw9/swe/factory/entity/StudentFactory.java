@@ -21,4 +21,12 @@ public class StudentFactory {
                 .registrationNumber(12345678L)
                 .cart(cart).build();
     }
+
+    public static Student createStudent(Long id) {
+        return Student.builder().username("test")
+                .department("ComputerScience")
+                .password("1234")
+                .registrationNumber(id)
+                .cart(createCart()).build();
+    }
 }
