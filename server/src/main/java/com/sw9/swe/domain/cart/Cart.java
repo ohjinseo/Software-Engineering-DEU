@@ -25,4 +25,8 @@ public class Cart extends BaseTimeEntity {
     public Cart(List<Course> courses) {
         this.courses = courses;
     }
+
+    public void addCourse(Course course) {
+        courses.add(course);
+    }
 }

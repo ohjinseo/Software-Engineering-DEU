@@ -1,4 +1,4 @@
-package com.sw9.swe.dto.member;
+package com.sw9.swe.dto.student;
 
 import com.sw9.swe.domain.student.Student;
 import lombok.AllArgsConstructor;

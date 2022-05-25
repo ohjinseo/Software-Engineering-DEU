@@ -1,9 +1,11 @@
 package com.sw9.swe.controller.student;
 
+import com.sw9.swe.config.security.PrincipalDetails;
 import com.sw9.swe.controller.response.Response;
-import com.sw9.swe.service.StudentService.StudentService;
+import com.sw9.swe.service.student.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
@@ -17,12 +19,11 @@ public class StudentController {
         return Response.success(studentService.read(registrationNumber));
     }
 
-//    @GetMapping("/api/students")
-//    @ResponseStatus(HttpStatus.OK)
-//    public Response readAll() {
-//        return Response.success(studentService.readAll());
-//    }
-    // pageable
+    @GetMapping("/api/students")
+    @ResponseStatus(HttpStatus.OK)
+    public Response readAll(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+        return Response.success(studentService.readAll(principalDetails));
+    }
 
     @DeleteMapping("/api/students/{registrationNumber}")
     @ResponseStatus(HttpStatus.OK)

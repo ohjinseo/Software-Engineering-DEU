@@ -54,6 +54,19 @@ class StudentControllerTest {
     }
 
     @Test
+    void studentReadAllTest() throws Exception {
+        // given
+        Long id1 = 11111111L;
+        Long id2 = 22222222L;
+        studentRepository.save(createStudent(id1));
+        studentRepository.save(createStudent(id2));
+
+        // when, then
+        mockMvc.perform(get("/api/students"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
     void studentDeleteTest() throws Exception {
         // given
         Long id = 111L;

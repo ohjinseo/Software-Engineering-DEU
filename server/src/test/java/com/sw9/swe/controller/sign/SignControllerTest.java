@@ -38,7 +38,7 @@ class SignControllerTest {
     @Test
     void signUpTest() throws Exception{
         // given
-        CreateStudentRequest request = createStudentCreateRequest();
+        CreateStudentRequest request = createStudentCreateRequest(11111111L, "1234");
 
         // when, then
         mockMvc.perform(post("/api/sign-up")
