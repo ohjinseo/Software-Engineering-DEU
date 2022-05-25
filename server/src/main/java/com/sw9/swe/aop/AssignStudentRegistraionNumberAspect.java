@@ -22,8 +22,8 @@ public class AssignStudentRegistraionNumberAspect {
     @Before("@annotation(com.sw9.swe.aop.AssignStudentRegistrationNumber)")
     public void assignStudentRegistrationNumber(JoinPoint joinPoint) {
         Arrays.stream(joinPoint.getArgs())
-                .forEach(arg->getMethod(arg.getClass(), "setMemberId")
-                        .ifPresent(setMemberId->invokeMethod(arg, setMemberId, authHelper.extractStudentRegistrationNumber())));
+                .forEach(arg->getMethod(arg.getClass(), "setStudentId")
+                        .ifPresent(setStudentId->invokeMethod(arg, setStudentId, authHelper.extractStudentRegistrationNumber())));
     }
 
     private Optional<Method> getMethod(Class<?> clazz, String methodName) {

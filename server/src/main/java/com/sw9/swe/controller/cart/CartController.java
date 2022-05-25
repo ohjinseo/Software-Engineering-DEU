@@ -1,16 +1,17 @@
 package com.sw9.swe.controller.cart;
 
+import com.sw9.swe.aop.AssignStudentRegistrationNumber;
 import com.sw9.swe.controller.response.Response;
+import com.sw9.swe.dto.cart.CartAddCourseRequest;
+import com.sw9.swe.service.cart.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
 public class CartController {
+    private final CartService cartService;
 
     @GetMapping("/api/cart/{studentId}")
     @ResponseStatus(HttpStatus.OK)
@@ -19,10 +20,11 @@ public class CartController {
         return Response.success();
     }
 
-    @PostMapping("/api/cart/{courseId}")
+    @PostMapping("/api/cart")
     @ResponseStatus(HttpStatus.CREATED)
-    public Response add(Long courseId) {
-
+    @AssignStudentRegistrationNumber
+    public Response add(@RequestBody CartAddCourseRequest request) {
+        cartService.add(request);
         return Response.success();
     }
 }

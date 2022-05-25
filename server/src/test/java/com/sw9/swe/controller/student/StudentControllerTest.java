@@ -1,6 +1,7 @@
 package com.sw9.swe.controller.student;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sw9.swe.aop.WithMockCustomUser;
 import com.sw9.swe.domain.student.Student;
 import com.sw9.swe.exception.StudentNotFoundException;
 import com.sw9.swe.repository.student.StudentRepository;
@@ -32,6 +33,7 @@ class StudentControllerTest {
 
     ObjectMapper objectMapper = new ObjectMapper();
 
+    @WithMockCustomUser
     @Test
     void studentReadTest() throws Exception {
         // given
