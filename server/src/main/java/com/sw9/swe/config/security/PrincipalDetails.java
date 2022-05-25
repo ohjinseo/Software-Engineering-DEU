@@ -34,31 +34,31 @@ public class PrincipalDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        throw new UnsupportedOperationException();
+        return student.getPassword();
     }
 
     @Override
     public String getUsername() {
-        throw new UnsupportedOperationException();
+        return student.getUsername();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        throw new UnsupportedOperationException();
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        throw new UnsupportedOperationException();
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        throw new UnsupportedOperationException();
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        throw new UnsupportedOperationException();
+        return true;
     }
 }

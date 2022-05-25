@@ -17,21 +17,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser(User.builder()
-                        .username("admin")
-                        .password(passwordEncoder().encode("1234"))
-                        .roles("ADMIN"));
-    }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .httpBasic().disable()
-                .formLogin().disable();
+        http.csrf().disable();
+
         http.authorizeRequests()
-                .anyRequest().permitAll();
+                .antMatchers("/api/students/**").authenticated()
+                .and()
+                .formLogin()
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/");
+
     }
 }
