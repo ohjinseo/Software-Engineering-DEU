@@ -1,10 +1,7 @@
 package com.sw9.swe.advice;
 
 import com.sw9.swe.controller.response.Response;
-import com.sw9.swe.exception.CourseNotFoundException;
-import com.sw9.swe.exception.LoginFailureException;
-import com.sw9.swe.exception.StudentNotFoundException;
-import com.sw9.swe.exception.StudentRegistrationNumberAlreadyExistsException;
+import com.sw9.swe.exception.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -36,5 +33,17 @@ public class ExceptionAdvice {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Response courseNotFoundException(CourseNotFoundException e) {
         return Response.failure(-1003, e.getMessage());
+    }
+
+    @ExceptionHandler(CartCourseAlreadyExistsException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public Response cartCourseAlreadyExistsException(CartCourseAlreadyExistsException e) {
+        return Response.failure(-1004, e.getMessage() + "은 이미 장바구니에 추가함");
+    }
+
+    @ExceptionHandler(CartCourseNotExistsException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public Response cartCourseNotExistsException(CartCourseNotExistsException e) {
+        return Response.failure(-1005, e.getMessage() + "은 장바구니에 존재하지 않는 교과목입니다.");
     }
 }
