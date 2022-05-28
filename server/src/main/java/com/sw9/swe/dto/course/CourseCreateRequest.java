@@ -3,9 +3,11 @@ package com.sw9.swe.dto.course;
 import com.sw9.swe.domain.course.Course;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class CourseCreateRequest {
     private String courseName;
 

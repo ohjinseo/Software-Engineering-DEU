@@ -4,9 +4,11 @@ import com.sw9.swe.domain.cart.Cart;
 import com.sw9.swe.domain.student.Student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class CreateStudentRequest {
     private String username;
