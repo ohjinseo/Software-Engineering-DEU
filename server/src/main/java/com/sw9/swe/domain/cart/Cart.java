@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -32,5 +33,9 @@ public class Cart extends BaseTimeEntity {
 
     public void deleteCourse(Course course) {
         courses.remove(course);
+    }
+
+    public void deleteAllCourse() {
+        courses.clear();
     }
 }

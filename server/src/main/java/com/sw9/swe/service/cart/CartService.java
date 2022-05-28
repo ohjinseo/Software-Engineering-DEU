@@ -3,8 +3,7 @@ package com.sw9.swe.service.cart;
 import com.sw9.swe.domain.cart.Cart;
 import com.sw9.swe.domain.course.Course;
 import com.sw9.swe.domain.student.Student;
-import com.sw9.swe.dto.cart.CartAddCourseRequest;
-import com.sw9.swe.dto.cart.CartDeleteCourseRequest;
+import com.sw9.swe.dto.cart.*;
 import com.sw9.swe.dto.course.CourseListDto;
 import com.sw9.swe.exception.CartCourseAlreadyExistsException;
 import com.sw9.swe.exception.CartCourseNotExistsException;
@@ -24,6 +23,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class CartService {
     private final CourseRepository courseRepository;
     private final StudentRepository studentRepository;
+
+    public CartDto read(CartReadRequest request) {
+        Student student = studentRepository.findByRegistrationNumber(request.getStudentId()).orElseThrow(StudentNotFoundException::new);
+        return CartDto.toDto(student.getCart());
+    }
 
     @Transactional
     public void add(CartAddCourseRequest request) {
@@ -47,5 +51,16 @@ public class CartService {
         }
 
         student.getCart().deleteCourse(course);
+    }
+
+    @Transactional
+    public void deleteAll(CartDeleteAllCourseRequest request) {
+        Student student = studentRepository.findByRegistrationNumber(request.getStudentId()).orElseThrow(StudentNotFoundException::new);
+
+        if (student.getCart().getCourses().isEmpty()) {
+            throw new CartCourseNotExistsException();
+        }
+
+        student.getCart().deleteAllCourse();
     }
 }
