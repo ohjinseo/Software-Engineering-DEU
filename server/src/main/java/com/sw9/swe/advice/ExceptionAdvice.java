@@ -46,4 +46,10 @@ public class ExceptionAdvice {
     public Response cartCourseNotExistsException(CartCourseNotExistsException e) {
         return Response.failure(-1005, e.getMessage() + "은 장바구니에 존재하지 않는 교과목입니다.");
     }
+
+    @ExceptionHandler(CartCourseEmptyException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Response cartCourseEmptyException(CartCourseEmptyException e) {
+        return Response.failure(-1006, e.getMessage());
+    }
 }

@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Getter
@@ -23,12 +25,18 @@ public class SignupCourse extends BaseTimeEntity {
     @OneToOne(fetch=FetchType.LAZY)
     private Course course;
 
-    private String grade;
 
     @Builder
-    public SignupCourse(Student student, Course course, String grade) {
+    public SignupCourse(Student student, Course course) {
         this.student = student;
         this.course = course;
-        this.grade = grade;
+    }
+
+    // 장바구니 모두 신청일 때 saveAll() 메소드 인자로 들어가기 위해 엔티티 집합으로 변환해주는 메소드
+    public static List<SignupCourse> toEntities(Student student, List<Course> courses) {
+        return courses.stream().map(c -> SignupCourse.builder()
+                .student(student)
+                .course(c)
+                .build()).toList();
     }
 }
