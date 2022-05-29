@@ -28,9 +28,9 @@ public class SignupCourseService {
     private final CourseRepository courseRepository;
 
     @Transactional
-    public void createCourse(CreateSignupCourseRequest request) {
-        Student student = studentRepository.findByRegistrationNumber(request.getStudentId()).orElseThrow(StudentNotFoundException::new);
-        Course course = courseRepository.findById(request.getCourseId()).orElseThrow(CourseNotFoundException::new);
+    public void createCourse(PrincipalDetails principalDetails, Long courseId) {
+        Student student = studentRepository.findByRegistrationNumber(principalDetails.getRegistrationNumber()).orElseThrow(StudentNotFoundException::new);
+        Course course = courseRepository.findById(courseId).orElseThrow(CourseNotFoundException::new);
 
         if (!student.getCart().getCourses().contains(course)) {
             throw new CartCourseNotExistsException(course.getCourseName());

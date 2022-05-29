@@ -17,11 +17,10 @@ import javax.validation.Valid;
 public class SignupCourseController {
     private final SignupCourseService signupCourseService;
 
-    @PostMapping("/api/signupCourse")
+    @PostMapping("/api/signupCourse/{courseId}")
     @ResponseStatus(HttpStatus.OK)
-    @AssignStudentRegistrationNumber
-    public Response createSignupCourse(@Valid @RequestBody CreateSignupCourseRequest request) {
-        signupCourseService.createCourse(request);
+    public Response createSignupCourse(@AuthenticationPrincipal PrincipalDetails principalDetails, @PathVariable Long courseId) {
+        signupCourseService.createCourse(principalDetails, courseId);
         return Response.success();
     }
 
