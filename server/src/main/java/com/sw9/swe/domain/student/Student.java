@@ -25,7 +25,7 @@ public class Student extends BaseTimeEntity {
 
     private String department;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Cart cart;
 
     @Builder
