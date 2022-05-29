@@ -1,5 +1,6 @@
 package com.sw9.swe.domain.signupCourse;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sw9.swe.domain.BaseTimeEntity;
 import com.sw9.swe.domain.course.Course;
 import com.sw9.swe.domain.student.Student;
@@ -19,6 +20,7 @@ public class SignupCourse extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     private Student student;
 
