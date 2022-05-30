@@ -1,5 +1,6 @@
 package com.sw9.swe.service.cart;
 
+import com.sw9.swe.config.security.PrincipalDetails;
 import com.sw9.swe.domain.cart.Cart;
 import com.sw9.swe.domain.course.Course;
 import com.sw9.swe.domain.student.Student;
@@ -24,15 +25,15 @@ public class CartService {
     private final CourseRepository courseRepository;
     private final StudentRepository studentRepository;
 
-    public CartDto read(CartReadRequest request) {
-        Student student = studentRepository.findByRegistrationNumber(request.getStudentId()).orElseThrow(StudentNotFoundException::new);
+    public CartDto read(PrincipalDetails principalDetails) {
+        Student student = studentRepository.findByRegistrationNumber(principalDetails.getRegistrationNumber()).orElseThrow(StudentNotFoundException::new);
         return CartDto.toDto(student.getCart());
     }
 
     @Transactional
-    public void add(CartAddCourseRequest request) {
-        Course course = courseRepository.findById(request.getCourseId()).orElseThrow(StudentNotFoundException::new);
-        Student student = studentRepository.findByRegistrationNumber(request.getStudentId()).orElseThrow(StudentNotFoundException::new);
+    public void add(PrincipalDetails principalDetails, Long courseId) {
+        Course course = courseRepository.findById(courseId).orElseThrow(StudentNotFoundException::new);
+        Student student = studentRepository.findByRegistrationNumber(principalDetails.getRegistrationNumber()).orElseThrow(StudentNotFoundException::new);
 
         if(student.getCart().getCourses().contains(course)){
             throw new CartCourseAlreadyExistsException(course.getCourseName());
@@ -41,9 +42,9 @@ public class CartService {
     }
 
     @Transactional
-    public void delete(CartDeleteCourseRequest request) {
-        Course course = courseRepository.findById(request.getCourseId()).orElseThrow(StudentNotFoundException::new);
-        Student student = studentRepository.findByRegistrationNumber(request.getStudentId()).orElseThrow(StudentNotFoundException::new);
+    public void delete(PrincipalDetails principalDetails, Long courseId) {
+        Course course = courseRepository.findById(courseId).orElseThrow(StudentNotFoundException::new);
+        Student student = studentRepository.findByRegistrationNumber(principalDetails.getRegistrationNumber()).orElseThrow(StudentNotFoundException::new);
 
         if (!student.getCart().getCourses().contains(course)) {
             throw new CartCourseNotExistsException(course.getCourseName());
@@ -53,8 +54,8 @@ public class CartService {
     }
 
     @Transactional
-    public void deleteAll(CartDeleteAllCourseRequest request) {
-        Student student = studentRepository.findByRegistrationNumber(request.getStudentId()).orElseThrow(StudentNotFoundException::new);
+    public void deleteAll(PrincipalDetails principalDetails) {
+        Student student = studentRepository.findByRegistrationNumber(principalDetails.getRegistrationNumber()).orElseThrow(StudentNotFoundException::new);
 
         if (student.getCart().getCourses().isEmpty()) {
             throw new CartCourseNotExistsException();

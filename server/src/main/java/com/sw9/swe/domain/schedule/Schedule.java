@@ -56,7 +56,7 @@ public class Schedule {
 
             for (int k = firstPoint - 1; k < secondPoint; k++) {
                 if (dates[Week.valueOf(String.valueOf(day)).ordinal()][k]) {
-                    throw new ScheduleConflictException(course.getCourseName() + " 강의가 " + day + "요일 " + firstPoint + "-" + secondPoint +"교시 시간표와 겹칩니다.");
+                    throw new ScheduleConflictException(course.getCourseName() + " : " + day + "요일 [" + firstPoint + "-" + secondPoint +"]교시 시간표가 겹칩니다.");
                 }
             }
         }

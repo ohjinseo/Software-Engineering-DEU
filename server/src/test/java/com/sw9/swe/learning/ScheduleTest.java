@@ -17,7 +17,7 @@ public class ScheduleTest {
         List<Course> courses = List.of(course1, course2);
         Cart cart = createCart(courses);
 
-        Course course3 = createCourseWithTimeInfo("수[1-3]");
+        Course course3 = createCourseWithTimeInfo("화[1-3], 금[3-4], 목[1-2]");
 
         cart.addCourse(course3);
     }
