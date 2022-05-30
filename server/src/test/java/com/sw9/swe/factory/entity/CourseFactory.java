@@ -17,4 +17,16 @@ public class CourseFactory {
                 .timeInfo("timeInfo")
                 .limitStudent(30).build();
     }
+
+    public static Course createCourseWithTimeInfo(String timeInfo) {
+        return Course.builder().courseName("test")
+                .department("Computer Science")
+                .college("college")
+                .courseName("course")
+                .lectureInfo("lecture")
+                .distributionClass(1)
+                .professor("professor")
+                .timeInfo(timeInfo)
+                .limitStudent(30).build();
+    }
 }

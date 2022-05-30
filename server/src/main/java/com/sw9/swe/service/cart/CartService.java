@@ -37,7 +37,6 @@ public class CartService {
         if(student.getCart().getCourses().contains(course)){
             throw new CartCourseAlreadyExistsException(course.getCourseName());
         }
-
         student.getCart().addCourse(course);
     }
 

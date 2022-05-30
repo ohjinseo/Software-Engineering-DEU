@@ -52,4 +52,10 @@ public class ExceptionAdvice {
     public Response cartCourseEmptyException(CartCourseEmptyException e) {
         return Response.failure(-1006, e.getMessage());
     }
+
+    @ExceptionHandler(ScheduleConflictException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public Response scheduleConflictException(ScheduleConflictException e) {
+        return Response.failure(-1007, e.getMessage());
+    }
 }

@@ -36,7 +36,6 @@ class CartControllerTest {
 
     ObjectMapper objectMapper = new ObjectMapper();
 
-
     @BeforeEach
     void beforeEach() {
         mockMvc = MockMvcBuilders.webAppContextSetup(context).apply(springSecurity()).build();

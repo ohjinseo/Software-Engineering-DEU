@@ -33,6 +33,7 @@ public class Course extends BaseTimeEntity {
 
     private Integer limitStudent;
 
+    // 월[2-3], 화[1-2]
     private String timeInfo;
 
     @Builder
