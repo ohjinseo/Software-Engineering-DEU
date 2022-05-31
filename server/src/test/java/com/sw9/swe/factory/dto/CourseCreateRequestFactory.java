@@ -5,6 +5,16 @@ import com.sw9.swe.dto.course.CourseCreateRequest;
 public class CourseCreateRequestFactory {
     public static CourseCreateRequest createCourseCreateRequest() {
         return new CourseCreateRequest("courseName", "college", 1,
-                "department", "lectureInfo", "professor", 30, "timeInfo");
+                "department", "type", "division", "lectureInfo", "professor", 30, "timeInfo");
+    }
+
+    public static CourseCreateRequest createCourseCreateRequestWithTimeInfo(String timeInfo) {
+        return new CourseCreateRequest("courseName", "college", 1,
+                "department", "type", "division", "lectureInfo", "professor", 30, timeInfo);
+    }
+
+    public static CourseCreateRequest createCourseCreateRequest(String courseName, String college, Integer distributionClass, String department,
+                                                                            String type, String division, String lectureInfo, String professor, Integer limitStudent, String timeInfo) {
+        return new CourseCreateRequest(courseName, college, distributionClass, department, type, division, lectureInfo, professor, limitStudent, timeInfo);
     }
 }

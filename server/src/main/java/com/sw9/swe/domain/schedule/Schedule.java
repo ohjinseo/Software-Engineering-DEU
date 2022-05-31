@@ -16,6 +16,7 @@ public class Schedule {
 
     public Schedule(List<Course> courses) {
 
+
         // false로 초기화
         for (Boolean[] a : dates) {
             Arrays.fill(a, false);
@@ -55,6 +56,8 @@ public class Schedule {
             int secondPoint = Integer.parseInt(String.valueOf(s.trim().charAt(4)));
 
             for (int k = firstPoint - 1; k < secondPoint; k++) {
+                System.out.println(day);
+                System.out.println(Week.valueOf(String.valueOf(day)));
                 if (dates[Week.valueOf(String.valueOf(day)).ordinal()][k]) {
                     throw new ScheduleConflictException(course.getCourseName() + " : " + day + "요일 [" + firstPoint + "-" + secondPoint +"]교시 시간표가 겹칩니다.");
                 }

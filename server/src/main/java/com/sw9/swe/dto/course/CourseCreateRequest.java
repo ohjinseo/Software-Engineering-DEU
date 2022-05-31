@@ -11,11 +11,15 @@ import lombok.NoArgsConstructor;
 public class CourseCreateRequest {
     private String courseName;
 
-    private String college;
+    private String college; // 단대
 
-    private Integer distributionClass;
+    private Integer distributionClass; // 분반
 
-    private String department;
+    private String department; // 학과
+
+    private String type; // 과목 유형 (전공, 교양)
+
+    private String division; // 이수 구분 (공통교양, 자율교양)
 
     private String lectureInfo;
 
@@ -27,6 +31,6 @@ public class CourseCreateRequest {
 
     public static Course toEntity(CourseCreateRequest request) {
         return new Course(request.getCourseName(), request.getCollege(), request.getDistributionClass(), request.getDepartment(),
-                request.getLectureInfo(), request.getProfessor(), request.getLimitStudent(), request.getTimeInfo());
+                request.getType(), request.getDivision(), request.getLectureInfo(), request.getProfessor(), request.getLimitStudent(), request.getTimeInfo());
     }
 }

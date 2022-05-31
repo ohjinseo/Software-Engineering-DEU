@@ -1,5 +1,6 @@
 package com.sw9.swe.service.course;
 
+import com.sw9.swe.domain.course.Course;
 import com.sw9.swe.dto.course.CourseCreateRequest;
 import com.sw9.swe.dto.course.CourseDto;
 import com.sw9.swe.exception.CourseNotFoundException;
@@ -17,6 +18,13 @@ public class CourseService {
     @Transactional
     public void create(CourseCreateRequest request) {
         courseRepository.save(CourseCreateRequest.toEntity(request));
+    }
+
+    @Transactional
+    public void delete(Long courseId) {
+        // security단에서 권한 검증 추가 예정
+        Course course = courseRepository.findById(courseId).orElseThrow(CourseNotFoundException::new);
+        courseRepository.delete(course);
     }
 
     public CourseDto read(Long courseId) {

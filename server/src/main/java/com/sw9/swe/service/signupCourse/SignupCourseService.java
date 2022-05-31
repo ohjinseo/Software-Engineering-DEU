@@ -62,10 +62,7 @@ public class SignupCourseService {
             throw new CartCourseNotExistsException(course.getCourseName());
         }
 
-        signupCourseRepository.delete(SignupCourse.builder()
-                .student(student)
-                .course(course)
-                .build());
+        signupCourseRepository.delete(signupCourseRepository.findByStudentAndCourse(student, course));
     }
 
     public SignupCourseListDto read(PrincipalDetails principalDetails) {

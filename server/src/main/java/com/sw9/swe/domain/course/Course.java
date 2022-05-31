@@ -27,6 +27,10 @@ public class Course extends BaseTimeEntity {
 
     private String department;
 
+    private String type;
+
+    private String division;
+
     private String lectureInfo;
 
     private String professor;
@@ -37,11 +41,14 @@ public class Course extends BaseTimeEntity {
     private String timeInfo;
 
     @Builder
-    public Course(String courseName, String college, Integer distributionClass, String department, String lectureInfo, String professor, Integer limitStudent, String timeInfo) {
+    public Course(String courseName, String college, Integer distributionClass, String department,
+                  String type, String division, String lectureInfo, String professor, Integer limitStudent, String timeInfo) {
         this.courseName = courseName;
         this.college = college;
         this.distributionClass = distributionClass;
         this.department = department;
+        this.type = type;
+        this.division = division;
         this.lectureInfo = lectureInfo;
         this.professor = professor;
         this.limitStudent = limitStudent;

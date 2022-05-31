@@ -60,16 +60,14 @@ class CartControllerTest {
 
     @WithMockCustomUser
     @Test
-    void addCourse() throws Exception{
+    void cartAddCourseTest() throws Exception {
         // given
-        Long courseId = 2L;
-        CartAddCourseRequest request = createCartAddCourseRequest(courseId);
+        Long courseId = 3L;
 
         //when, then
         mockMvc.perform(
-                post("/api/cart")
+                post("/api/cart/{courseId}", courseId)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request))
         ).andExpect(status().isCreated());
     }
 

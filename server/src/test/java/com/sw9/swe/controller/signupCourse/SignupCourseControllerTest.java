@@ -70,4 +70,6 @@ class SignupCourseControllerTest {
         String content = result.getResponse().getContentAsString();
         System.out.println(content);
     }
+
+
 }
