@@ -62,7 +62,7 @@ class CartControllerTest {
     @Test
     void cartAddCourseTest() throws Exception {
         // given
-        Long courseId = 3L;
+        Long courseId = 10L;
 
         //when, then
         mockMvc.perform(

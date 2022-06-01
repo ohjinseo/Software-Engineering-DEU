@@ -38,14 +38,12 @@ class SignupCourseControllerTest {
     @WithMockCustomUser
     void createSignupCourseTest() throws Exception {
         // given
-        Long courseId = 1L;
-        CreateSignupCourseRequest request = new CreateSignupCourseRequest(courseId);
+        Long courseId = 10L;
 
         // when, then
         mockMvc.perform(
-                post("/api/signupCourse")
+                post("/api/signupCourse/{courseId}", courseId)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request))
         ).andExpect(status().isOk());
     }
 

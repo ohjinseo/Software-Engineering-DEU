@@ -35,8 +35,6 @@ public class Cart extends BaseTimeEntity {
         courses.add(course);
     }
 
-
-
     public void deleteCourse(Course course) {
         courses.remove(course);
     }

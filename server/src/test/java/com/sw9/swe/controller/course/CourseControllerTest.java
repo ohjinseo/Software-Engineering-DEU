@@ -33,7 +33,7 @@ class CourseControllerTest {
 
         // given
         CourseCreateRequest request = createCourseCreateRequest("파이썬의 기초", "상경대", 1,
-                "화학과", "교양", "균형교양", "상경대[몰라]", "익명", 50, "화[3-4], 수[4-6]");
+                "화학과", "교양", "균형교양", "상경대[몰라]", "익명", 50, "화[3-4], 수[4-6]", 1);
 
         mockMvc.perform(post("/api/course")
                         .contentType(MediaType.APPLICATION_JSON)

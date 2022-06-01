@@ -4,6 +4,7 @@ import com.sw9.swe.config.security.PrincipalDetails;
 import com.sw9.swe.domain.course.Course;
 import com.sw9.swe.domain.signupCourse.SignupCourse;
 import com.sw9.swe.domain.student.Student;
+import com.sw9.swe.dto.course.CourseListDto;
 import com.sw9.swe.dto.signupCourse.CreateSignupCourseRequest;
 import com.sw9.swe.dto.signupCourse.SignupCourseListDto;
 import com.sw9.swe.exception.CartCourseEmptyException;
@@ -18,6 +19,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import static com.sw9.swe.dto.signupCourse.SignupCourseListDto.toCourseListDto;
 
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -65,8 +68,9 @@ public class SignupCourseService {
         signupCourseRepository.delete(signupCourseRepository.findByStudentAndCourse(student, course));
     }
 
-    public SignupCourseListDto read(PrincipalDetails principalDetails) {
+    public CourseListDto read(PrincipalDetails principalDetails) {
         Student student = studentRepository.findByRegistrationNumber(principalDetails.getRegistrationNumber()).orElseThrow(StudentNotFoundException::new);
-        return new SignupCourseListDto(signupCourseRepository.findByStudent(student));
+        // findByStudent : List<SignupCourse>
+        return SignupCourseListDto.toCourseListDto(signupCourseRepository.findByStudent(student));
     }
 }

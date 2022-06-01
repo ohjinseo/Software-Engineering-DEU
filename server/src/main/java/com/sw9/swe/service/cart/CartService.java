@@ -3,6 +3,7 @@ package com.sw9.swe.service.cart;
 import com.sw9.swe.config.security.PrincipalDetails;
 import com.sw9.swe.domain.cart.Cart;
 import com.sw9.swe.domain.course.Course;
+import com.sw9.swe.domain.schedule.Schedule;
 import com.sw9.swe.domain.student.Student;
 import com.sw9.swe.dto.cart.*;
 import com.sw9.swe.dto.course.CourseListDto;
