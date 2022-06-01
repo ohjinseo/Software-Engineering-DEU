@@ -1,19 +1,14 @@
 package com.sw9.swe.repository.course;
 
-import antlr.StringUtils;
-import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.sw9.swe.domain.course.Course;
-import com.sw9.swe.domain.course.QCourse;
 import com.sw9.swe.dto.course.CourseDto;
 import com.sw9.swe.dto.course.CourseReadCondition;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.function.Predicate;
-
 import static com.querydsl.core.types.Projections.constructor;
 import static com.sw9.swe.domain.course.QCourse.course;
 
@@ -39,11 +34,13 @@ public class CustomCourseRepositoryImpl extends QuerydslRepositorySupport implem
                         course.lectureInfo,
                         course.professor,
                         course.limitStudent,
-                        course.timeInfo))
+                        course.timeInfo,
+                        course.limitGrade))
                 .from(course)
                 .where(eqType(condition.getType()), eqCourseName(condition.getCourseName())
                         , eqDivision(condition.getDivision()), eqCourseNumber(condition.getCourseNumber()),
-                        eqProfessor(condition.getProfessor())).fetch();
+                        eqProfessor(condition.getProfessor()), eqDepartment(condition.getDepartment()),
+                        eqLimitGrade(condition.getLimitGrade())).fetch();
     }
 
     private BooleanExpression eqType(String type) {
@@ -77,6 +74,20 @@ public class CustomCourseRepositoryImpl extends QuerydslRepositorySupport implem
     private BooleanExpression eqProfessor(String professor) {
         if (professor != null) {
             return course.professor.eq(professor);
+        }
+        return null;
+    }
+
+    private BooleanExpression eqDepartment(String department) {
+        if (department != null) {
+            return course.department.eq(department);
+        }
+        return null;
+    }
+
+    private BooleanExpression eqLimitGrade(Integer limitGrade) {
+        if (limitGrade != null) {
+            return course.limitGrade.eq(limitGrade);
         }
         return null;
     }

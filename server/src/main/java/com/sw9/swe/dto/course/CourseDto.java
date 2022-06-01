@@ -31,6 +31,8 @@ public class CourseDto {
     // 월[2-3], 화[1-2]
     private String timeInfo;
 
+    private Integer limitGrade;
+
 
     public static CourseDto toDto(Course course) {
         return new CourseDto(course.getCourseName(),
@@ -42,6 +44,7 @@ public class CourseDto {
                 course.getLectureInfo(),
                 course.getProfessor(),
                 course.getLimitStudent(),
-                course.getTimeInfo());
+                course.getTimeInfo(),
+                course.getLimitGrade());
     }
 }

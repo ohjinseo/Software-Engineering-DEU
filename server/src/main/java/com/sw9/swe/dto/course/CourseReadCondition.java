@@ -13,4 +13,6 @@ public class CourseReadCondition {
     private String courseName;
     private Long courseNumber;
     private String professor;
+    private String department;
+    private Integer limitGrade;
 }

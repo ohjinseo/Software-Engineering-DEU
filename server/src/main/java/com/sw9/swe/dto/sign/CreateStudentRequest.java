@@ -19,12 +19,16 @@ public class CreateStudentRequest {
 
     private String department;
 
+    private Integer grade;
+
     public static Student toEntity(CreateStudentRequest request, Cart cart, PasswordEncoder passwordEncoder) {
         return Student.builder()
                 .username(request.getUsername())
                 .registrationNumber(request.getRegistrationNumber())
                 .department(request.getDepartment())
                 .password(passwordEncoder.encode(request.password))
+                .grade(request.grade)
                 .cart(cart).build();
     }
+
 }

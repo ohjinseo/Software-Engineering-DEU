@@ -24,16 +24,19 @@ public class Student extends BaseTimeEntity {
     private String password;
 
     private String department;
+    
+    private Integer grade; // 학년 추가
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Cart cart;
 
     @Builder
-    public Student(String username, Long registrationNumber, String password, String department, Cart cart) {
+    public Student(String username, Long registrationNumber, String password, String department, Cart cart, Integer grade) {
         this.username = username;
         this.registrationNumber = registrationNumber;
         this.password = password;
         this.department = department;
         this.cart = cart;
+        this.grade = grade;
     }
 }
