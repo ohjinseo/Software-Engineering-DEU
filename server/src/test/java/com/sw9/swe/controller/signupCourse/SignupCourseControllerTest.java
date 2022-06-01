@@ -69,5 +69,4 @@ class SignupCourseControllerTest {
         System.out.println(content);
     }
 
-
 }

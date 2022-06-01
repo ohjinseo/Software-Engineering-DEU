@@ -4,6 +4,7 @@ import com.sw9.swe.config.security.PrincipalDetails;
 import com.sw9.swe.domain.cart.Cart;
 import com.sw9.swe.domain.course.Course;
 import com.sw9.swe.domain.schedule.Schedule;
+import com.sw9.swe.domain.signupCourse.SignupCourse;
 import com.sw9.swe.domain.student.Student;
 import com.sw9.swe.dto.cart.*;
 import com.sw9.swe.dto.course.CourseListDto;
@@ -12,11 +13,14 @@ import com.sw9.swe.exception.CartCourseNotExistsException;
 import com.sw9.swe.exception.StudentNotFoundException;
 import com.sw9.swe.repository.cart.CartRepository;
 import com.sw9.swe.repository.course.CourseRepository;
+import com.sw9.swe.repository.signupCourse.SignupCourseRepository;
 import com.sw9.swe.repository.student.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -25,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class CartService {
     private final CourseRepository courseRepository;
     private final StudentRepository studentRepository;
+    private final SignupCourseRepository signupCourseRepository; // 장바구니에 담을 때 수강신청된 과목도 예외 처리
 
     public CartDto read(PrincipalDetails principalDetails) {
         Student student = studentRepository.findByRegistrationNumber(principalDetails.getRegistrationNumber()).orElseThrow(StudentNotFoundException::new);
@@ -39,7 +44,8 @@ public class CartService {
         if(student.getCart().getCourses().contains(course)){
             throw new CartCourseAlreadyExistsException(course.getCourseName());
         }
-        student.getCart().addCourse(course);
+
+        student.getCart().addCourse(course, SignupCourse.toCourseList(signupCourseRepository.findByStudent(student)));
     }
 
     @Transactional

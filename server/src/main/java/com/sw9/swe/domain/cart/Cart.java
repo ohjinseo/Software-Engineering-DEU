@@ -29,8 +29,8 @@ public class Cart extends BaseTimeEntity {
         this.courses = courses;
     }
 
-    public void addCourse(Course course) {
-        Schedule schedule = new Schedule(courses); // 시간표 생성
+    public void addCourse(Course course, List<Course> signupCourses) {
+        Schedule schedule = new Schedule(courses, signupCourses); // 시간표 생성
         schedule.isConflictSchedule(course);
         courses.add(course);
     }

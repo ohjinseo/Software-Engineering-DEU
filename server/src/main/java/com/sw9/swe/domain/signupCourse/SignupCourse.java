@@ -41,4 +41,8 @@ public class SignupCourse extends BaseTimeEntity {
                 .course(c)
                 .build()).toList();
     }
+
+    public static List<Course> toCourseList(List<SignupCourse> signupCourseList) {
+        return signupCourseList.stream().map(SignupCourse::getCourse).toList();
+    }
 }
