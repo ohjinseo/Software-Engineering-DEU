@@ -1,0 +1,6 @@
+GET http://localhost8000/api/courses
+Content-Type: application/json
+{
+"type":"전공",
+"division":"전공필수"
+}

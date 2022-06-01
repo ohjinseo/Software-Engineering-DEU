@@ -3,6 +3,8 @@ package com.sw9.swe.service.course;
 import com.sw9.swe.domain.course.Course;
 import com.sw9.swe.dto.course.CourseCreateRequest;
 import com.sw9.swe.dto.course.CourseDto;
+import com.sw9.swe.dto.course.CourseListDto;
+import com.sw9.swe.dto.course.CourseReadCondition;
 import com.sw9.swe.exception.CourseNotFoundException;
 import com.sw9.swe.repository.course.CourseRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,5 +31,11 @@ public class CourseService {
 
     public CourseDto read(Long courseId) {
         return CourseDto.toDto(courseRepository.findById(courseId).orElseThrow(CourseNotFoundException::new));
+    }
+
+    public CourseListDto readAllByCondition(CourseReadCondition condition) {
+        return CourseListDto.toDto(
+                courseRepository.findAllByCondition(condition)
+        );
     }
 }

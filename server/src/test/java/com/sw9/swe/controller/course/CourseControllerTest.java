@@ -12,7 +12,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static com.sw9.swe.factory.dto.CourseCreateRequestFactory.createCourseCreateRequest;
+import static com.sw9.swe.factory.dto.CourseCreateRequestFactory.createCourseCreateRequestWithTimeInfo;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -27,9 +29,11 @@ class CourseControllerTest {
     ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
-    void createTest() throws Exception {
+    void createCourseTest() throws Exception {
+
         // given
-        CourseCreateRequest request = createCourseCreateRequest();
+        CourseCreateRequest request = createCourseCreateRequest("파이썬의 기초", "상경대", 1,
+                "화학과", "교양", "균형교양", "상경대[몰라]", "익명", 50, "화[3-4], 수[4-6]");
 
         mockMvc.perform(post("/api/course")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -40,6 +44,11 @@ class CourseControllerTest {
     @Test
     void deleteTest() throws Exception {
         // given
+        Long courseId = 2L;
 
+        mockMvc.perform(delete("/api/course/{courseId}", courseId)
+                .contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
     }
+
+
 }

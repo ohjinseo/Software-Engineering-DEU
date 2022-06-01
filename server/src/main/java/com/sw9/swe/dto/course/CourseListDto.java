@@ -11,6 +11,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CourseListDto {
-    private Long totalElements;
-    private List<Course> courseList;
+    private Integer totalElements;
+    private List<CourseDto> courseList;
+
+    public static CourseListDto toDto(List<CourseDto> courseList) {
+        return new CourseListDto(courseList.size(), courseList);
+    }
 }

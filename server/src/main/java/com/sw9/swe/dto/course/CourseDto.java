@@ -18,12 +18,17 @@ public class CourseDto {
 
     private String department;
 
+    private String type;
+
+    private String division;
+
     private String lectureInfo;
 
     private String professor;
 
     private Integer limitStudent;
 
+    // 월[2-3], 화[1-2]
     private String timeInfo;
 
 
@@ -32,6 +37,8 @@ public class CourseDto {
                 course.getCollege(),
                 course.getDistributionClass(),
                 course.getDepartment(),
+                course.getType(),
+                course.getDivision(),
                 course.getLectureInfo(),
                 course.getProfessor(),
                 course.getLimitStudent(),
