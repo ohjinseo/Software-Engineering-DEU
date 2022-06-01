@@ -12,14 +12,14 @@ import java.util.List;
 
 @Data
 public class Schedule {
-    private Boolean[][] dates = new Boolean[5][10];
+    private Integer[][] dates = new Integer[5][8];
 
-    public Schedule(List<Course> courses) {
+    public Schedule(List<Course> courses, List<Course> signupCourses) {
 
 
         // false로 초기화
-        for (Boolean[] a : dates) {
-            Arrays.fill(a, false);
+        for (Integer[] a : dates) {
+            Arrays.fill(a, 0);
         }
 
         courses.forEach(c->{
@@ -36,7 +36,24 @@ public class Schedule {
 
                 for (int k = firstPoint - 1; k < secondPoint; k++) {
                     // 요일에 해당하는 enum 상수 값
-                    dates[Week.valueOf(String.valueOf(day)).ordinal()][k] = true;
+                    dates[Week.valueOf(String.valueOf(day)).ordinal()][k] = 1;
+                }
+            }
+        });
+
+        signupCourses.forEach(c->{
+            String[] timeInfo = c.getTimeInfo().split(",");
+
+            for (String s : timeInfo) {
+
+                char day = s.trim().charAt(0);
+
+                // 월[2-3] 에서 첫 시간과 끝 시간 꺼내옴
+                int firstPoint = Integer.parseInt(String.valueOf(s.trim().charAt(2)));
+                int secondPoint = Integer.parseInt(String.valueOf(s.trim().charAt(4)));
+
+                for (int k = firstPoint - 1; k < secondPoint; k++) {
+                    dates[Week.valueOf(String.valueOf(day)).ordinal()][k] = 2;
                 }
             }
         });
@@ -58,7 +75,7 @@ public class Schedule {
             for (int k = firstPoint - 1; k < secondPoint; k++) {
                 System.out.println(day);
                 System.out.println(Week.valueOf(String.valueOf(day)));
-                if (dates[Week.valueOf(String.valueOf(day)).ordinal()][k]) {
+                if (dates[Week.valueOf(String.valueOf(day)).ordinal()][k] == 1 || dates[Week.valueOf(String.valueOf(day)).ordinal()][k] == 2) {
                     throw new ScheduleConflictException(course.getCourseName() + " : " + day + "요일 [" + firstPoint + "-" + secondPoint +"]교시 시간표가 겹칩니다.");
                 }
             }

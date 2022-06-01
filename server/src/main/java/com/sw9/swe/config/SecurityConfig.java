@@ -27,6 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/students/**").authenticated()
                 .antMatchers("/api/cart/**").authenticated()
                 .antMatchers("/api/signupCourse/**").authenticated()
+                .antMatchers("/api/schedule/**").authenticated()
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/login")
