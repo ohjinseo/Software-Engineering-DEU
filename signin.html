@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동의대학교 수강신청시스템</title>
+    <link rel="stylesheet" href="css/signin.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    
+</head>
+<body>
+    <script type="text/javascript" src="js/signin.js"></script>
+    <div class="container">
+        <header>
+            <main>
+                <div class="main_img">
+                    <img src="images/logo.png" alt="로고입니다.">
+                </div>
+                <div class="warp_form">
+                    <h1 class="brand_logo">동의대학교 수강신청시스템</h1>
+                        <div class="item_tf id_ip">
+                            <input type="id" id="user_id" class="item_ip"  placeholder="아이디" />
+                        </div>
+                        <div class="item_msg">
+                            <span class="idErrorMsg errorMsg"></span>
+                        </div>
+                        <div class="item_tf pw_ip">
+                            <input type="password" id="user_password" class="item_ip" placeholder="비밀번호" />
+                        </div>
+                        <div class="item_msg">
+                            <span class="passwordErrorMsg errorMsg"></span>
+                        </div>
+                        
+                        <div class="warp_btn">
+                            <button type="button" id="login_btn" class="item_btn btn_login" onclick="loginClick()">로그인</button>
+                        </div>
+                    <div class="info_user">
+                        <div>
+                            <a href="#" onclick=change_pwd()>비밀번호 변경</a>
+                            <label> | </label>
+                            <a onclick=find_pwd()>비밀번호 찾기</a>
+                        </div>
+                        <div>
+                            <a href="https://www.deu.ac.kr/www/content/61" target="_blank">개인정보처리방침</a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </header>
+    </div>
+    <footer>
+        <p>Copyright 2022 DongEui University. All rights reserved.</p>
+    </footer>
+</body>
+</html>

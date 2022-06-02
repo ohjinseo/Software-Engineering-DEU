@@ -1,0 +1,50 @@
+main{
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+h1{
+    text-align: center;
+}
+.add_info_box{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 50px 150px 10px 150px;
+    align-items: center;
+    justify-content: center;
+}
+.add_info_box div{
+    width: 300px;
+    margin: 20px 0;
+    justify-content: center;
+    padding: 8px 0 10px 5px;
+    border-bottom: 2px solid black;
+}
+.add_info_box div:last-child{
+    border: none;
+}
+
+.add_info_box input{
+    outline: none;
+    border: none;
+    font-size: 18px;
+    box-sizing: border-box;
+    width: 200px;
+    height: 25px;
+}
+.add_info_box div button{
+    font-size: 18px;
+    margin-top: 30px;
+    border-radius: 5px;
+    width: 300px;
+    height: 40px;
+}
+footer{
+    position: absolute;
+    bottom: 0;
+}
+.footer{
+    margin-top: 50px;
+    position: unset;
+}

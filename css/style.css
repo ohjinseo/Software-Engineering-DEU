@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+/* all*/
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Nanum Gothic", "맑은 고딕", Dotum, "돋움", Helvetica, sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+a{
+  color: black;
+}
+a,button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+
+.blue_btn{
+  background-color:#1764dc ;
+  color: white;
+}
+.blue_btn:hover{
+  background-color: #196ff9;
+}
+.red_btn{
+  background-color: red;
+  color: white;
+}
+.red_btn:hover{
+  background-color: rgb(255, 60, 60);
+}
+
+/*footer*/
+footer {
+  height: 5%;
+  width: 100%;
+  font-size: 13px;
+  box-sizing: border-box;
+  background-color: #525b69;
+  color: #b8bdc6;
+  padding: 15px 0 25px;
+  text-align: center;
+}
