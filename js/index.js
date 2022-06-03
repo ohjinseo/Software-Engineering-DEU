@@ -1,8 +1,8 @@
 //로딩시 실행 ajax수정필요
 $(document).ready(function () {
   getSubject();
-  basketList();
-  successList();
+  //basketList();
+  //successList();
 });
 
 //강좌전부 불러오기
@@ -59,13 +59,11 @@ function getSubject() {
 //강좌명검색
 function sbj_name_find() {
   $("#sbj_name_find_btn").click(function () {
-    sbj_name = $("#sbj_name").val();
-    //radio_box: $("#remain:checked").val(),
-    // sbj_type = $("#sbj_type").val();
-    // division = $("#division").val();
+    radio_box: $("#remain:checked").val(), (sbj_type = $("#sbj_type").val());
+    division = $("#division").val();
 
     var param = `${
-      $("#sbj_name").val() == ""
+      sbj_name == ""
         ? ""
         : "courseName=" + encodeURIComponent($("#sbj_name").val())
     }`;
@@ -117,8 +115,8 @@ function sbj_name_find() {
           $(".subject_info_wrap").append(subjects);
         });
       },
-      error: function (error) {
-        //  alert("강좌명검색 에러 발생"); //테스트
+      error: function () {
+        alert("비동기 처리 오류");
       },
     });
   });
@@ -142,49 +140,45 @@ function sbj_num_find() {
       success: function (data) {
         //테이블 초기화
         $(".subject_info_wrap").empty();
-        if (result.length > 1) {
-          for (i = 0; i <= result.length; i++) {
-            var subjects =
-              "<tr class='subject_info'>" +
-              "<td>" +
-              "<button class='blue_btn basket_plus' id='plus_basket'onclick='plusBasket()' >장바구니 추가</button>" +
-              "</td>" +
-              "<td>" +
-              c.department +
-              "</td>" +
-              "<td>" +
-              c.division +
-              "</td>" +
-              "<td>" +
-              c.courseNum +
-              "</td>" +
-              "<td>" +
-              c.courseName +
-              "</td>" +
-              "<td>" +
-              c.credit +
-              "</td>" +
-              "<td>" +
-              c.limitStudent +
-              "</td>" +
-              "<td>" +
-              c.professor +
-              "</td>" +
-              "<td>" +
-              c.lectureInfo +
-              "&nbsp;&nbsp;" +
-              c.timeInfo +
-              "</td>" +
-              "</tr>";
+        result?.result?.data?.courseList?.forEach((c) => {
+          var subjects =
+            "<tr class='subject_info'>" +
+            "<td>" +
+            "<button class='blue_btn basket_plus' id='plus_basket'onclick='plusBasket()' >장바구니 추가</button>" +
+            "</td>" +
+            "<td>" +
+            c.department +
+            "</td>" +
+            "<td>" +
+            c.division +
+            "</td>" +
+            "<td>" +
+            c.courseNum +
+            "</td>" +
+            "<td>" +
+            c.courseName +
+            "</td>" +
+            "<td>" +
+            c.credit +
+            "</td>" +
+            "<td>" +
+            c.limitStudent +
+            "</td>" +
+            "<td>" +
+            c.professor +
+            "</td>" +
+            "<td>" +
+            c.lectureInfo +
+            "&nbsp;&nbsp;" +
+            c.timeInfo +
+            "</td>" +
+            "</tr>";
 
-            $(".subject_info_wrap").append(subjects);
-          }
-        } else if (result.length == 0) {
-          alert("해당하는 강좌가 없습니다.");
-        }
+          $(".subject_info_wrap").append(subjects);
+        });
       },
       error: function (error) {
-        alert("강좌번호 검색 오류발생"); //테스트
+        alert("비동기 처리 오류");
         // alert(
         //   "code:" +
         //     request.status +
@@ -203,12 +197,12 @@ function sbj_num_find() {
 //교수검색
 function sbj_pro_find() {
   $("#sbj_pro_find_btn").click(function () {
-    // var send = {
-    sbj_pro: $("#sbj_pro").val();
-    //   radio_box: $("#remain:checked").val(),
-    //   sbj_type: $("#sbj_type").val(),
-    //   division: $("#division").val(),
-    // };
+    var send = {
+      sbj_pro: $("#sbj_pro").val(),
+      radio_box: $("#remain:checked").val(),
+      sbj_type: $("#sbj_type").val(),
+      division: $("#division").val(),
+    };
     var param = `${
       $("#sbj_pro").val() == ""
         ? ""
@@ -223,48 +217,45 @@ function sbj_pro_find() {
       success: function (result) {
         //테이블 초기화
         $(".subject_info_wrap").empty();
-        if (result.length > 1) {
-          for (i = 0; i <= result.length; i++) {
-            var subjects =
-              "<tr class='subject_info'>" +
-              "<td>" +
-              "<button class='blue_btn basket_plus' id='plus_basket'onclick='plusBasket()' >장바구니 추가</button>" +
-              "</td>" +
-              "<td>" +
-              c.department +
-              "</td>" +
-              "<td>" +
-              c.division +
-              "</td>" +
-              "<td>" +
-              c.courseNum +
-              "</td>" +
-              "<td>" +
-              c.courseName +
-              "</td>" +
-              "<td>" +
-              c.credit +
-              "</td>" +
-              "<td>" +
-              c.limitStudent +
-              "</td>" +
-              "<td>" +
-              c.professor +
-              "</td>" +
-              "<td>" +
-              c.lectureInfo +
-              "&nbsp;&nbsp;" +
-              c.timeInfo +
-              "</td>" +
-              "</tr>";
-            $(".subject_info_wrap").append(subjects);
-          }
-        } else if (result.length == 0) {
-          alert("해당하는 강좌가 없습니다.");
-        }
+        result?.result?.data?.courseList?.forEach((c) => {
+          var subjects =
+            "<tr class='subject_info'>" +
+            "<td>" +
+            "<button class='blue_btn basket_plus' id='plus_basket'onclick='plusBasket()' >장바구니 추가</button>" +
+            "</td>" +
+            "<td>" +
+            c.department +
+            "</td>" +
+            "<td>" +
+            c.division +
+            "</td>" +
+            "<td>" +
+            c.courseNum +
+            "</td>" +
+            "<td>" +
+            c.courseName +
+            "</td>" +
+            "<td>" +
+            c.credit +
+            "</td>" +
+            "<td>" +
+            c.limitStudent +
+            "</td>" +
+            "<td>" +
+            c.professor +
+            "</td>" +
+            "<td>" +
+            c.lectureInfo +
+            "&nbsp;&nbsp;" +
+            c.timeInfo +
+            "</td>" +
+            "</tr>";
+
+          $(".subject_info_wrap").append(subjects);
+        });
       },
       error: function (error) {
-        alert("교수 검색 에러발생"); //테스트
+        alert("비동기 처리 오류");
         // alert(
         //   "code:" +
         //     request.status +
@@ -298,25 +289,27 @@ function successList() {
             c.department +
             "</td>" +
             "<td>" +
-            data[i].division +
+            c.division +
             "</td>" +
             "<td>" +
-            data[i].sbj_num +
+            c.courseNum +
             "</td>" +
             "<td>" +
-            data[i].sbj_name +
+            c.courseName +
             "</td>" +
             "<td>" +
-            data[i].sbj_credit +
+            c.credit +
             "</td>" +
             "<td>" +
-            data[i].sbj_limitStu +
+            c.limitStudent +
             "</td>" +
             "<td>" +
-            data[i].sbj_pro +
+            c.professor +
             "</td>" +
             "<td>" +
-            data[i].sbj_lecture_room +
+            c.lectureInfo +
+            "&nbsp;&nbsp;" +
+            c.timeInfo +
             "</td>" +
             "</tr>";
 
@@ -326,8 +319,8 @@ function successList() {
         alert("해당하는 강좌가 없습니다.");
       }
     },
-    error: function (error) {
-      alert("수강확정 불러오기 오류 발생"); //테스트
+    error: function () {
+      alert("비동기 처리 오류");
       // alert(
       //   "code:" +
       //     request.status +
@@ -362,25 +355,27 @@ function basketList() {
             c.department +
             "</td>" +
             "<td>" +
-            data[i].division +
+            c.division +
             "</td>" +
             "<td>" +
-            data[i].sbj_num +
+            c.courseNum +
             "</td>" +
             "<td>" +
-            data[i].sbj_name +
+            c.courseName +
             "</td>" +
             "<td>" +
-            data[i].sbj_credit +
+            c.credit +
             "</td>" +
             "<td>" +
-            data[i].sbj_limitStu +
+            c.limitStudent +
             "</td>" +
             "<td>" +
-            data[i].sbj_pro +
+            c.professor +
             "</td>" +
             "<td>" +
-            data[i].sbj_lecture_room +
+            c.lectureInfo +
+            "&nbsp;&nbsp;" +
+            c.timeInfo +
             "</td>" +
             "</tr>";
 
@@ -390,8 +385,8 @@ function basketList() {
         alert("해당하는 강좌가 없습니다.");
       }
     },
-    error: function (error) {
-      alert("장바구니 조회 오류 발생"); //테스트
+    error: function () {
+      alert("비동기 처리 오류");
       // alert(
       //   "code:" +
       //     request.status +
@@ -427,7 +422,7 @@ function plusBasket() {
         basketList();
       },
       error: function (error) {
-        alert("장바구니추가 전송 실패"); //테스트
+        alert("비동기 처리 오류");
         // alert(
         //   "code:" +
         //     request.status +
@@ -460,8 +455,8 @@ function Success() {
         alert("메시지 전송 성공"); //테스트
         successList();
       },
-      error: function (error) {
-        alert("수강신청 전송 실패"); //테스트
+      error: function () {
+        alert("비동기 처리 오류");
         // alert(
         //   "code:" +
         //     request.status +
@@ -514,8 +509,8 @@ function allApply() {
         alert("메시지 전송 성공"); //테스트
         successList();
       },
-      error: function (error) {
-        alert("수강신청 전송 실패"); //테스트
+      error: function () {
+        alert("비동기 처리 오류");
         // alert(
         //   "code:" +
         //     request.status +

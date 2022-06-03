@@ -60,7 +60,7 @@ function signInSubmit() {
     dataType: "text",
     success: function (data) {
       signInData = JSON.parse(data);
-      //이메일이 존재 하지 않음
+      //아이디가 존재 하지 않음
       if (signInData.signInFlag == 0) {
         let textMsg = "존재하지 않는 아이디 입니다.";
         messageService(textMsg, 0);
