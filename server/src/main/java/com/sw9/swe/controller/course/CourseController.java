@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin("*")
 public class CourseController {
     private final CourseService courseService;
 
@@ -29,7 +30,6 @@ public class CourseController {
 
     @GetMapping("/api/courses")
     @ResponseStatus(HttpStatus.OK)
-    @CrossOrigin("*")
     public Response readAllByCondition(CourseReadCondition condition) {
         System.out.println(condition);
         return Response.success(courseService.readAllByCondition(condition));

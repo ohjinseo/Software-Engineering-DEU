@@ -12,6 +12,7 @@ import static com.sw9.swe.controller.response.Response.success;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class SignController {
     private final SignService signService;
 

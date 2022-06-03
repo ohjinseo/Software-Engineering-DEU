@@ -12,6 +12,7 @@ import static com.sw9.swe.controller.response.Response.success;
 
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin("*")
 public class ScheduleController {
     private final ScheduleService scheduleService;
 

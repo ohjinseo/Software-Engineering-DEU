@@ -14,6 +14,7 @@ import javax.validation.Valid;
 
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin("*")
 public class SignupCourseController {
     private final SignupCourseService signupCourseService;
 
