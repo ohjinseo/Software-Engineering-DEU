@@ -25,7 +25,9 @@ public class CustomCourseRepositoryImpl extends QuerydslRepositorySupport implem
     @Override
     public List<CourseDto> findAllByCondition(CourseReadCondition condition) {
         return jpaQueryFactory
-                .select(constructor(CourseDto.class, course.courseName,
+                .select(constructor(CourseDto.class,
+                        course.id,
+                        course.courseName,
                         course.college,
                         course.distributionClass,
                         course.department,

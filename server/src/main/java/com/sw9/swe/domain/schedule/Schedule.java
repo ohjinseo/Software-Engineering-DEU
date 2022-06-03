@@ -57,7 +57,7 @@ public class Schedule {
                 }
             }
         });
-        System.out.println(Arrays.deepToString(dates));
+
     }
 
     // 강의가 추가될 때 굳이 시간표 갱신이 필요 없음 -> 중복되는지 확인만 해주면됨!!
@@ -73,9 +73,9 @@ public class Schedule {
             int secondPoint = Integer.parseInt(String.valueOf(s.trim().charAt(4)));
 
             for (int k = firstPoint - 1; k < secondPoint; k++) {
-                System.out.println(day);
-                System.out.println(Week.valueOf(String.valueOf(day)));
+
                 if (dates[Week.valueOf(String.valueOf(day)).ordinal()][k] == 1 || dates[Week.valueOf(String.valueOf(day)).ordinal()][k] == 2) {
+
                     throw new ScheduleConflictException(course.getCourseName() + " : " + day + "요일 [" + firstPoint + "-" + secondPoint +"]교시 시간표가 겹칩니다.");
                 }
             }

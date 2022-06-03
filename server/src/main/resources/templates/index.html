@@ -4,285 +4,214 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="https://kit.fontawesome.com/b3187be5e2.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/js/index.js"></script>
-    <script type="text/javascript" src="/js/app.js"></script>
+
     <title>동의대학교 수강신청시스템</title>
 </head>
 <body>
-    <div class="wrap">
-        <!--왼쪽메뉴-->
-        <header class="left_nav">
-            <ul>
-                <h2>동의대학교<br/>2022학년도 1학기 <br/>수강신청</h2>
-                <h4><li id="stu_name">stu_name</li></h4>
-                <li>
-                    <p><a class="logout">로그아웃</a></p>
-                </li>
-            </ul>
-        </header>
-        <!--화면 가운데 부분-->
-        <div class="main_menu">
-            <!--검색기능-->
-            <div class="filters">
-                <div class="subject_filter">
-                    <div class="radio_box">
-                        <input type="radio" class="all_sbj" name="remain" id="all" value="all" checked>전체
-                        <input type="radio" class="pos_sbj" name="remain" id="remain" value="remain">수강신청가능 강좌
-                    </div>
-                    <div>
-                        <label>강좌 유형 </label>
-                        <select class="sbj_type" id="sbj_type">
-                            <option value="all">전체</option>
-                            <option value="culture">교양</option>
-                            <option value="major">전공</option>
-                            <option value="minor">부전공</option>
-                            <option value="double_major">복수전공</option>
-                            <option value="union">교직/평교</option>
-                            <option value="linked_major">연계전공</option>
-                            <option value="ek">공학소양</option>
-                            <option value="free_choice">자유선택</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>이수구분 </label>
-                        <select class="division" id="division">
-                            <option value="common">공통교양</option>
-                            <option value="self">자율교양</option>
-                            <option value="affiliated">계열교양</option>
-                            <option value="balanced">균형교양</option>
-                            <option value="major_req">전공필수</option>
-                            <option value="major_teach">전공교직</option>
-                            <option value="major_choice">전공선택</option>
-                            <option value="teach_subject">교직과목</option>
-                            <option value="minor">부전공</option>
-                            <option value="free">자유선택</option>
-                            <option value="ek">공학소양</option>
-                            <option value="convergence">융합전공</option>
-                        </select>
-                    </div>
-                    
+<div class="wrap">
+    <!--왼쪽메뉴-->
+    <header class="left_nav">
+        <ul>
+            <h2>동의대학교<br/>2022학년도 1학기 <br/>수강신청</h2>
+            <h4><li id="stu_name">문영현</li></h4>
+            <li>
+                <p><a class="logout" href="signin.html">로그아웃</a></p>
+
+            </li>
+        </ul>
+    </header>
+    <!--화면 가운데 부분-->
+    <div class="main_menu">
+        <!--검색기능-->
+        <div class="filters">
+            <div class="subject_filter">
+                <div class="radio_box">
+                    <input type="radio" class="all_sbj" name="remain" id="all" value="all" checked>전체
+                    <input type="radio" class="pos_sbj" name="remain" id="remain" value="remain">수강신청가능 강좌
                 </div>
-                <div class="find_boxs">
-                    <div class="subject_find_box">
-                        <input type="text" id="sbj_name" class="sbj_name_find item_ip" placeholder="강좌명 검색">
-                        <button onclick="sbj_name_find()" class="sbj_name_find_btn " id="sbj_name_find_btn"><i class="fas fa-search"></i></button>
-                    </div>
-                    <div class="subject_find_box">
-                        <input type="text" id="sbj_num" class="sbj_num_find item_ip" placeholder="강좌번호 검색">
-                        <button onclick="sbj_num_find()" class="sbj_num_find_btn" id="sbj_num_find_btn"><i class="fas fa-search"></i></button>
-                    </div>
-                    <div class="subject_find_box">
-                        <input type="text" id="sbj_pro" class="sbj_pro_find item_ip" placeholder="교수님 검색">
-                        <button onclick="sbj_pro_find()" class="sbj_pro_find_btn" id="sbj_pro_find_btn"><i class="fas fa-search"></i></button>
-                    </div>
+                <div>
+                    <label>강좌 유형 </label>
+                    <select class="sbj_type" id="sbj_type">
+                        <option value="">전체</option>
+                        <option value="교양">교양</option>
+                        <option value="전공">전공</option>
+                        <option value="부전공">부전공</option>
+                        <option value="복수전공">복수전공</option>
+                        <option value="교직">교직/평교</option>
+                        <option value="연계전공">연계전공</option>
+                        <option value="공학소양">공학소양</option>
+                        <option value="자유선택">자유선택</option>
+                    </select>
                 </div>
+                <div>
+                    <label>이수구분 </label>
+                    <select class="division" id="division">
+                        <option value="">전체</option>
+                        <option value="공통교양">공통교양</option>
+                        <option value="자율교양">자율교양</option>
+                        <option value="계열교양">계열교양</option>
+                        <option value="균형교양">균형교양</option>
+                        <option value="전공필수">전공필수</option>
+                        <option value="전공교직">전공교직</option>
+                        <option value="전공선택">전공선택</option>
+                        <option value="교직과목">교직과목</option>
+                        <option value="부전공">부전공</option>
+                        <option value="자유선택">자유선택</option>
+                        <option value="공학소양">공학소양</option>
+                        <option value="융합전공">융합전공</option>
+                    </select>
+                </div>
+
             </div>
-            <!--강좌목록-->
-            <div class="subjects lists_table">
-                <h2>개설강좌</h2>
-                <div class="table_wrap">
-                    <table class="subject_list">
-                        <thead>
-                        <tr>
-                            <td>장바구니 추가</td>
-                            <td>이수구분</td>
-                            <td>강좌번호</td>
-                            <td>강좌명</td>
-                            <td>학점/시간</td>
-                            <td>수강인원</td>
-                            <td>담당교수</td>
-                            <td>강의실(시간)</td>
-                        </tr>
-                        </thead>
-                        <tbody class="subject_info_wrap">
-                            <tr class="subject_info">
-                                <td>
-                                    <button class="blue_btn basket_plus" id="plus_basket" onclick="plusBasket()">장바구니 추가</button>
-                                </td>
-                                <td>기본교양</td>
-                                <td>10017-001</td>
-                                <td>실용영어</td>
-                                <td>3/3</td>
-                                <td>0/50</td>
-                                <td>누구게</td>
-                                <td>본관501[월2-4],본관501[화2-4],본관501[수2-4],본관501[목2-4],정보관810[금3-4]</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="find_boxs">
+                <div class="subject_find_box">
+                    <input type="text" id="sbj_name" class="sbj_name_find item_ip" placeholder="강좌명 검색">
+                    <button onclick="sbj_name_find()" class="sbj_name_find_btn " id="sbj_name_find_btn"><i class="fas fa-search"></i></button>
                 </div>
-            </div>
-            <!--수강확정 강좌-->
-            <div class="success_subject lists_table">
-                <h2>수강확정 강좌</h2>
-                <div class="table_wrap success_subject_wrap">
-                    <table class="subject_list success_subject_list">
-                        <thead>
-                        <tr>
-                            <td>삭제</td>
-                            <td>이수구분</td>
-                            <td>강좌번호</td>
-                            <td>강좌명</td>
-                            <td>학점/시간</td>
-                            <td>수강인원</td>
-                            <td>담당교수</td>
-                            <td>강의실(시간)</td>
-                        </tr>
-                        </thead>
-                        <tbody class="success_sbj_wrap">
-                        <tr class="subject_info success_subject_info">
-                            <td>
-                                <button onclick="deleteSuccess()" class="red_btn success_delete_btn" id="success_delete">삭제</button>
-                            </td>
-                            <td>기본교양</td>
-                            <td>10017-001</td>
-                            <td>실용영어</td>
-                            <td>3/3</td>
-                            <td>0/50</td>
-                            <td>누구게</td>
-                            <td>본관501[월2-4],본관501[화2-4],본관501[수2-4],본관501[목2-4],정보관810[금3-4]</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <div class="subject_find_box">
+                    <input type="text" id="sbj_num" class="sbj_num_find item_ip" placeholder="강좌번호 검색">
+                    <button onclick="sbj_num_find()" class="sbj_num_find_btn" id="sbj_num_find_btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="subject_find_box">
+                    <input type="text" id="sbj_pro" class="sbj_pro_find item_ip" placeholder="교수님 검색">
+                    <button onclick="sbj_pro_find()" class="sbj_pro_find_btn" id="sbj_pro_find_btn"><i class="fas fa-search"></i></button>
                 </div>
             </div>
         </div>
-        <!--화면 오른쪽 시간표 학점 장바구니-->
-        <div class="right_menu">
-            <!--학점-->
-            <div class="credit right_mini_box">  
-                <h2>학점</h2>
-                <p>장바구니에 담을수 있는 학점 : </p>
-                <p>장바구니에 담긴 학점 : </p>
-                <p>수강신청된  학점 : </p>
+        <!--강좌목록-->
+        <div class="subjects lists_table">
+            <h2>개설강좌</h2>
+            <div class="table_wrap">
+                <table class="subject_list">
+                    <thead>
+                    <tr>
+                        <td>장바구니 추가</td>
+                        <td>학과</td>
+                        <td>이수구분</td>
+                        <td>강좌번호</td>
+                        <td>강좌명</td>
+                        <td>학점</td>
+                        <td>수강인원</td>
+                        <td>담당교수</td>
+                        <td>강의실(시간)</td>
+                    </tr>
+                    </thead>
+                    <tbody class="subject_info_wrap">
+                    </tbody>
+                </table>
             </div>
-            <!--장바구니-->
-            <div class="basket right_mini_box">
-                <h2>장바구니</h2>
-                <div class="basket_wrap">
-                    <table class="basket_list">
-                        <thead>
-                        <tr>
-                            <td>수강신청</td>
-                            <td>삭제</td>
-                            <td>이수구분</td>
-                            <td>강좌번호</td>
-                            <td>강좌명</td>
-                            <td>학점/시간</td>
-                            <td>수강인원</td>
-                            <td>담당교수</td>
-                            <td>강의실(시간)</td>
-                        </tr>
-                        </thead>
-                        <tbody class="basket_info_wrap">
-                        <tr class="basket_info">
-                            <td>
-                                <button onclick="Success()" class="blue_btn apply_btn" id="sign_up_btn">수강신청</button>
-                            </td>
-                            <td>
-                                <button onclick="deleteBasket()" class="red_btn basket_delete_btn" id="basket_delete">삭제</button>
-                            </td>
-                            <td>기본교양</td>
-                            <td>10017-001</td>
-                            <td>실용영어</td>
-                            <td>3/3</td>
-                            <td>0/50</td>
-                            <td>누구게</td>
-                            <td>본관501[월2-4],본관501[화2-4],본관501[수2-4],본관501[목2-4],정보관810[금3-4]</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <button onclick="allApply()" class="blue_btn basket_all_apply_btn" id="all_apply">모두신청</button>
+        </div>
+        <!--수강확정 강좌-->
+        <div class="success_subject lists_table">
+            <h2>수강확정 강좌</h2>
+            <div class="table_wrap success_subject_wrap">
+                <table class="subject_list success_subject_list">
+                    <thead>
+                    <tr>
+                        <td>삭제</td>
+                        <td>학과</td>
+                        <td>이수구분</td>
+                        <td>강좌번호</td>
+                        <td>강좌명</td>
+                        <td>학점</td>
+                        <td>수강인원</td>
+                        <td>담당교수</td>
+                        <td>강의실(시간)</td>
+                    </tr>
+                    </thead>
+                    <tbody class="success_sbj_wrap">
+                    <tr class="subject_info success_subject_info">
+                        <td>
+                            <button onclick="deleteSuccess()" class="red_btn success_delete_btn" id="success_delete">삭제</button>
+                        </td>
+                        <td>기본교양</td>
+                        <td>10017-001</td>
+                        <td>실용영어</td>
+                        <td>3/3</td>
+                        <td>0/50</td>
+                        <td>누구게</td>
+                        <td>본관501[월2-4],본관501[화2-4],본관501[수2-4],본관501[목2-4],정보관810[금3-4]</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-            <!--시간표-->
-            <div class="schedule right_mini_box">
-                <h2>시간표</h2>
-                <div class="schedule_wrap">
-                    <table id="schedule_table">
-                        <tr>
+        </div>
+    </div>
+    <!--화면 오른쪽 시간표 학점 장바구니-->
+    <div class="right_menu">
+        <!--학점-->
+        <div class="credit right_mini_box">
+            <h2>학점</h2>
+            <p>장바구니에 담을수 있는 학점 : </p>
+            <p>장바구니에 담긴 학점 : </p>
+            <p>수강신청된  학점 : </p>
+        </div>
+        <!--장바구니-->
+        <div class="basket right_mini_box">
+            <h2>장바구니</h2>
+            <div class="basket_wrap">
+                <table class="basket_list">
+                    <thead>
+                    <tr>
+                        <td>수강신청</td>
+                        <td>삭제</td>
+                        <td>학과</td>
+                        <td>이수구분</td>
+                        <td>강좌번호</td>
+                        <td>강좌명</td>
+                        <td>학점</td>
+                        <td>수강인원</td>
+                        <td>담당교수</td>
+                        <td>강의실(시간)</td>
+                    </tr>
+                    </thead>
+                    <tbody class="basket_info_wrap">
+                    <tr class="basket_info">
+                        <td>
+                            <button onclick="Success()" class="blue_btn apply_btn" id="sign_up_btn">수강신청</button>
+                        </td>
+                        <td>
+                            <button onclick="deleteBasket()" class="red_btn basket_delete_btn" id="basket_delete">삭제</button>
+                        </td>
+                        <td>기본교양</td>
+                        <td>10017-001</td>
+                        <td>실용영어</td>
+                        <td>3/3</td>
+                        <td>0/50</td>
+                        <td>누구게</td>
+                        <td>본관501[월2-4],본관501[화2-4],본관501[수2-4],본관501[목2-4],정보관810[금3-4]</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="blue_btn basket_all_apply_btn" id="all_apply">모두신청</button>
+        </div>
+        <!--시간표-->
+        <div class="schedule right_mini_box">
+            <h2>시간표</h2>
+            <div class="schedule_wrap">
+                <table id="schedule_table">
+                    <tr>
                         <th> </th>
                         <th>월</th>
                         <th>화</th>
                         <th>수</th>
                         <th>목</th>
                         <th>금</th>
-                        </tr>
-                        <tr>
-                        <th>1교시</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        </tr>
-                        <tr>
-                        <th>2교시</th>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        </tr>
-                        <tr>
-                        <th>3교시</th>
-                        <td> </td>
-                        <td> </td>
-                        <td></td>
-                        <td></td>
-                        <td> </td>
-                        </tr>
-                        <tr>
-                        <th>4교시</th>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        </tr>
-                        <tr>
-                        <th>5교시</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td> </td>
-                        </tr>
-                        <tr>
-                        <th>6교시</th>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        </tr>
-                        <tr>
-                        <th>7교시</th>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        </tr>
-                        <tr>
-                        <th>8교시</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        </tr>
-                    </table>
-                </div>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
-    <!--footer-->
-    <footer>
-        <p>Copyright 2022 DongEui University. All rights reserved.</p>
-    </footer>
+</div>
+<!--footer-->
+<footer>
+    <p>Copyright 2022 DongEui University. All rights reserved.</p>
+</footer>
+<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>

@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CourseDto {
+    private Long courseId;
+
     private String courseName;
 
     private String college;
@@ -35,7 +37,9 @@ public class CourseDto {
 
 
     public static CourseDto toDto(Course course) {
-        return new CourseDto(course.getCourseName(),
+        return new CourseDto(
+                course.getId(),
+                course.getCourseName(),
                 course.getCollege(),
                 course.getDistributionClass(),
                 course.getDepartment(),
@@ -46,5 +50,6 @@ public class CourseDto {
                 course.getLimitStudent(),
                 course.getTimeInfo(),
                 course.getLimitGrade());
+
     }
 }

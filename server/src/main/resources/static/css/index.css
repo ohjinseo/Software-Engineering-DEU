@@ -237,5 +237,12 @@
     #schedule_table td{
       background-color: #ccc;
     }
-    
+
+    #schedule_day th{
+        width: 50px;
+    }
+
+    #schedule_day td{
+        background-color: #ccc;
+    }
 

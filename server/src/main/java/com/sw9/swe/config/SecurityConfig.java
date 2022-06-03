@@ -25,8 +25,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().disable();
 
         http.authorizeRequests()
-                .antMatchers("/", "/css/**", "/images/**",
+                .antMatchers( "/css/**", "/images/**",
                         "/js/**", "/h2-console/**").permitAll()
+                .antMatchers("/").authenticated()
                 .antMatchers("/api/students/**").authenticated()
                 .antMatchers("/api/cart/**").authenticated()
                 .antMatchers("/api/signupCourse/**").authenticated()
@@ -36,6 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/");
+                .defaultSuccessUrl("/", true)
+                .and()
+                .rememberMe();
     }
 }

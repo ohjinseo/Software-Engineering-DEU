@@ -2,6 +2,7 @@ package com.sw9.swe.controller.course;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sw9.swe.aop.WithMockCustomUser;
 import com.sw9.swe.dto.course.CourseCreateRequest;
 import com.sw9.swe.repository.student.StudentRepository;
 import org.junit.jupiter.api.Test;
@@ -29,13 +30,14 @@ class CourseControllerTest {
     ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
+    @WithMockCustomUser
     void createCourseTest() throws Exception {
 
         // given
-        CourseCreateRequest request = createCourseCreateRequest("파이썬의 기초", "상경대", 1,
-                "화학과", "교양", "균형교양", "상경대[몰라]", "익명", 50, "화[3-4], 수[4-6]", 1);
+        CourseCreateRequest request = createCourseCreateRequest("test", "test", 1,
+                "화학과", "교양", "균형교양", "상경대[test]", "익명", 50, "금[1-3], 금[4-7]", 1);
 
-        mockMvc.perform(post("/api/course")
+        mockMvc.perform(post("/api/courses")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isCreated());

@@ -61,10 +61,6 @@ public class SignupCourseService {
         Student student = studentRepository.findByRegistrationNumber(principalDetails.getRegistrationNumber()).orElseThrow(StudentNotFoundException::new);
         Course course = courseRepository.findById(courseId).orElseThrow(CourseNotFoundException::new);
 
-        if (!student.getCart().getCourses().contains(course)) {
-            throw new CartCourseNotExistsException(course.getCourseName());
-        }
-
         signupCourseRepository.delete(signupCourseRepository.findByStudentAndCourse(student, course));
     }
 
