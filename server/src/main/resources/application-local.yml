@@ -1,5 +1,13 @@
 server:
-  port: 8000
+  port: 8080
+  servlet:
+    register-default-servlet: true
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
 
 spring:
   datasource:

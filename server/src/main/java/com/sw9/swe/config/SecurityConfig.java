@@ -22,16 +22,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
+        http.cors().disable();
 
         http.authorizeRequests()
+                .antMatchers("/", "/css/**", "/images/**",
+                        "/js/**", "/h2-console/**").permitAll()
                 .antMatchers("/api/students/**").authenticated()
                 .antMatchers("/api/cart/**").authenticated()
                 .antMatchers("/api/signupCourse/**").authenticated()
                 .antMatchers("/api/schedule/**").authenticated()
+                .antMatchers("/api/courses/**").authenticated()
                 .and()
                 .formLogin()
+                .loginPage("/login")
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/");
-
     }
 }

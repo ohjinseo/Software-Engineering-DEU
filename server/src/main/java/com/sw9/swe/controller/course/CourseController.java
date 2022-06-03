@@ -29,6 +29,7 @@ public class CourseController {
 
     @GetMapping("/api/courses")
     @ResponseStatus(HttpStatus.OK)
+    @CrossOrigin("*")
     public Response readAllByCondition(CourseReadCondition condition) {
         System.out.println(condition);
         return Response.success(courseService.readAllByCondition(condition));
