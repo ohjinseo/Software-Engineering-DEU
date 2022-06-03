@@ -14,7 +14,7 @@ function emptyCheck() {
     console.log("asd");
     messageService(msgText, 0);
     return false;
-  } else if (item_ip[1].value.length == 0) {
+  } else if (item_ip[1].value.length === 0) {
     let msgText = "비밀번호를 입력해 주세요.";
     messageService(msgText, 1);
     return false;
@@ -85,7 +85,8 @@ function signInSubmit() {
 
 function signInService() {
   //ajax호출
-  if (emptyCheck() == true) {
+  if (emptyCheck() === true) {
+    console.log("로그인 호출")
     signInData.user_id = item_ip[0].value;
     signInData.user_password = item_ip[1].value;
     signInSubmit();
@@ -93,6 +94,7 @@ function signInService() {
 }
 //로그인 버튼 누를시 signInService호출
 function loginClick() {
+
   signInService();
 }
 // login_btn.onclick = () => {
