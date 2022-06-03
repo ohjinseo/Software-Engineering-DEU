@@ -1,0 +1,26 @@
+/*헤더 메뉴바*/
+header{
+    box-sizing: border-box;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+.nav{
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+}
+.nav img {
+    margin-top: 10px;
+    width: 200px;
+    height: 60px;
+}
+.nav_list{
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+.nav_list li {
+    font-weight: 600;
+    padding: 0 10px;
+}
