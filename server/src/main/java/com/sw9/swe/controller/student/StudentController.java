@@ -14,16 +14,24 @@ import org.springframework.web.bind.annotation.*;
 public class StudentController {
     private final StudentService studentService;
 
+
+    @GetMapping("/api/student")
+    @ResponseStatus(HttpStatus.OK)
+    public Response readMe(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+        return Response.success(studentService.readMe(principalDetails));
+    }
+
     @GetMapping("/api/students/{registrationNumber}")
     @ResponseStatus(HttpStatus.OK)
     public Response read(@PathVariable Long registrationNumber) {
+
         return Response.success(studentService.read(registrationNumber));
     }
 
     @GetMapping("/api/students")
     @ResponseStatus(HttpStatus.OK)
     public Response readAll(@AuthenticationPrincipal PrincipalDetails principalDetails) {
-        return Response.success(studentService.readAll(principalDetails));
+        return Response.success(studentService.readAll());
     }
 
     @DeleteMapping("/api/students/{registrationNumber}")

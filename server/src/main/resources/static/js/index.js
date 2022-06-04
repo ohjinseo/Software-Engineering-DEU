@@ -4,7 +4,26 @@ $(document).ready(function () {
   basketList();
   successList();
   getSchedule();
+  getStudentInfo();
 });
+
+let bsum = 0;
+let csum = 0;
+
+function getStudentInfo() {
+  $.ajax({
+    url: `/api/student`, //나중에 수정해야할것
+    type: "get",
+    success: function (data) {
+      var name = data?.result?.data?.username
+
+      $('#stu_name').append(name);
+    },
+    error: function (error) {
+      alert(error.responseJSON.result.message);
+    },
+  });
+}
 
 function getSchedule(){
   $.ajax({
@@ -85,7 +104,7 @@ function getSubject() {
             c.courseName +
             "</td>" +
             "<td>" +
-            c.credit +
+            c.grade +
             "</td>" +
             "<td>" +
             c.limitStudent +
@@ -159,7 +178,7 @@ function sbj_name_find() {
               c.courseName +
               "</td>" +
               "<td>" +
-              c.credit +
+              c.grade +
               "</td>" +
               "<td>" +
               c.limitStudent +
@@ -222,7 +241,7 @@ function sbj_num_find() {
               c.courseName +
               "</td>" +
               "<td>" +
-              c.credit +
+              c.grade +
               "</td>" +
               "<td>" +
               c.limitStudent +
@@ -305,7 +324,7 @@ function sbj_pro_find() {
               c.courseName +
               "</td>" +
               "<td>" +
-              c.credit +
+              c.grade +
               "</td>" +
               "<td>" +
               c.limitStudent +
@@ -347,8 +366,10 @@ function successList() {
     type: "GET",
     dataType: "json",
     success: function (data) {
+      csum = 0;
       $(".success_sbj_wrap").empty();
       data?.result?.data?.courseList.forEach((c) => {
+        csum += c.grade;
         var subjects =
             "<tr class='subject_info success_subject_info'>" +
             "<td>" +
@@ -367,7 +388,7 @@ function successList() {
             c.courseName +
             "</td>" +
             "<td>" +
-            c.credit +
+            c.grade +
             "</td>" +
             "<td>" +
             c.limitStudent +
@@ -383,6 +404,11 @@ function successList() {
             "</tr>";
 
         $(".success_sbj_wrap").append(subjects);})
+
+      $('#bg3').empty();
+      $('#bg3').append(csum);
+      $('#bg1').empty();
+      $('#bg1').append(21-bsum - csum);
 
     },
     error: function () {
@@ -409,7 +435,9 @@ function basketList() {
     dataType: "json",
     success: function (data) {
       $(".basket_info_wrap").empty();
+      bsum = 0;
       data?.result?.data?.courses.forEach((c) => {
+        bsum += c.grade;
         var subjects =
             "<tr class='basket_info'>" +
             "<td>" +
@@ -431,7 +459,7 @@ function basketList() {
             c.courseName +
             "</td>" +
             "<td>" +
-            c.credit +
+            c.grade +
             "</td>" +
             "<td>" +
             c.limitStudent +
@@ -448,6 +476,10 @@ function basketList() {
 
         $(".basket_info_wrap").append(subjects);
       });
+      $('#bg2').empty();
+      $('#bg2').append(bsum);
+      $('#bg1').empty();
+      $('#bg1').append(21-bsum - csum);
     },
     error: function () {
       alert("비동기 처리 오류");

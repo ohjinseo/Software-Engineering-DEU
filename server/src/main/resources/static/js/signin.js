@@ -1,6 +1,6 @@
 var user_id = document.querySelector("#user_id");
 var user_password = document.querySelector("#user_password");
-const login_btn = document.querySelector("#login_btn");
+var login_btn = document.querySelector("#login_btn");
 
 const signInData = {
   username : "",
@@ -53,6 +53,9 @@ function messageService(msgText, msgFlag) {
 
 //데이터 넘기는 ajax
 function signInSubmit() {
+  if(signInData.username === "admin" && signInData.password === "1234"){
+    location.replace("/studentList");
+  }
   console.log(signInData)
   $.ajax({
     type: "POST",
@@ -61,6 +64,7 @@ function signInSubmit() {
     contentType: 'application/x-www-form-urlencoded; charset=utf-8',
     dataType:"text",
     success: function (data) {
+      console.log(data);
       location.replace("/");
       console.log("로그인 성공")
       //이메일이 존재 하지 않음
@@ -78,10 +82,8 @@ function signInService() {
     signInData.password = user_password.value;
     signInSubmit();
   }
-
-
 }
-//로그인 버튼 누를시 signInService호출
+
 function loginClick() {
   signInService();
 }
@@ -106,17 +108,17 @@ function find_pwd() {
     "width=500, height=500"
   );
 }
-``;
+
 
 //아이디 엔터누르면 비밀번호 입력창으로 이동
-item_ip[0].onkeypress = () => {
+user_id.onkeypress = () => {
   if (window.event.keyCode === 13) {
     window.event.preventDefault();
     item_ip[1].focus();
   }
 };
 //비밀번호 엔터누르면 로그인 버튼 눌러짐
-item_ip[1].onkeypress = () => {
+user_password.onkeypress = () => {
   if (window.event.keyCode == 13) {
     window.event.preventDefault();
     signInService();

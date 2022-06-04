@@ -39,12 +39,16 @@ public class Course extends BaseTimeEntity {
 
     private Integer limitGrade;
 
+
+
     // 월[2-3], 화[1-2]
     private String timeInfo;
 
+    private Integer grade;
+
     @Builder
     public Course(String courseName, String college, Integer distributionClass, String department,
-                  String type, String division, String lectureInfo, String professor, Integer limitStudent, String timeInfo, Integer limitGrade) {
+                  String type, String division, String lectureInfo, String professor, Integer limitStudent, String timeInfo, Integer limitGrade, Integer grade) {
         this.courseName = courseName;
         this.college = college;
         this.distributionClass = distributionClass;
@@ -56,5 +60,6 @@ public class Course extends BaseTimeEntity {
         this.limitStudent = limitStudent;
         this.timeInfo = timeInfo;
         this.limitGrade = limitGrade;
+        this.grade = grade;
     }
 }

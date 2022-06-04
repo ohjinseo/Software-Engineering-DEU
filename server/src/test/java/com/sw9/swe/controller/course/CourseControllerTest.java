@@ -35,7 +35,7 @@ class CourseControllerTest {
 
         // given
         CourseCreateRequest request = createCourseCreateRequest("test", "test", 1,
-                "화학과", "교양", "균형교양", "상경대[test]", "익명", 50, "금[1-3], 금[4-7]", 1);
+                "화학과", "교양", "균형교양", "상경대[test]", "익명", 50, "목[1-2]", 1, 2);
 
         mockMvc.perform(post("/api/courses")
                         .contentType(MediaType.APPLICATION_JSON)

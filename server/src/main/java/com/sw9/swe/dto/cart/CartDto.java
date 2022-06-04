@@ -11,6 +11,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class CartDto {
+
     private List<Course> courses;
 
     public static CartDto toDto(Cart cart) {

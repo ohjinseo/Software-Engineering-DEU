@@ -21,15 +21,18 @@ import java.util.List;
 public class StudentService {
     private final StudentRepository studentRepository;
 
+    public StudentDto readMe(PrincipalDetails principalDetails) {
+        return StudentDto.toDto(studentRepository.findByRegistrationNumber(principalDetails.getRegistrationNumber())
+                .orElseThrow(StudentNotFoundException::new));
+    }
+
     public StudentDto read(Long registrationNumber) {
         return StudentDto.toDto(studentRepository.findByRegistrationNumber(registrationNumber)
                 .orElseThrow(StudentNotFoundException::new));
     }
 
-    public StudentListDto readAll(PrincipalDetails principalDetails) {
+    public StudentListDto readAll() {
         List<Student> students = studentRepository.findAll();
-
-        log.info(principalDetails.getRegistrationNumber().toString());
 
         return StudentListDto.toListDto(students);
     }

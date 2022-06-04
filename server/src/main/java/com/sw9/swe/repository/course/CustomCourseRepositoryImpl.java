@@ -37,7 +37,9 @@ public class CustomCourseRepositoryImpl extends QuerydslRepositorySupport implem
                         course.professor,
                         course.limitStudent,
                         course.timeInfo,
-                        course.limitGrade))
+                        course.limitGrade,
+                        course.grade
+                        ))
                 .from(course)
                 .where(eqType(condition.getType()), eqCourseName(condition.getCourseName())
                         , eqDivision(condition.getDivision()), eqCourseNumber(condition.getCourseNumber()),

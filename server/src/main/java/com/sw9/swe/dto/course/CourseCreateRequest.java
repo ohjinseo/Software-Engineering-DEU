@@ -31,8 +31,10 @@ public class CourseCreateRequest {
 
     private Integer limitGrade;
 
+    private Integer grade;
+
     public static Course toEntity(CourseCreateRequest request) {
         return new Course(request.getCourseName(), request.getCollege(), request.getDistributionClass(), request.getDepartment(),
-                request.getType(), request.getDivision(), request.getLectureInfo(), request.getProfessor(), request.getLimitStudent(), request.getTimeInfo(), request.getLimitGrade());
+                request.getType(), request.getDivision(), request.getLectureInfo(), request.getProfessor(), request.getLimitStudent(), request.getTimeInfo(), request.getLimitGrade(), request.getGrade());
     }
 }

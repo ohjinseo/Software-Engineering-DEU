@@ -35,6 +35,8 @@ public class CourseDto {
 
     private Integer limitGrade;
 
+    private Integer grade;
+
 
     public static CourseDto toDto(Course course) {
         return new CourseDto(
@@ -49,7 +51,9 @@ public class CourseDto {
                 course.getProfessor(),
                 course.getLimitStudent(),
                 course.getTimeInfo(),
-                course.getLimitGrade());
+                course.getLimitGrade(),
+                course.getGrade());
+
 
     }
 }

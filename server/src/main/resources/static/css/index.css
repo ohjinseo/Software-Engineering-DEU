@@ -242,6 +242,10 @@
         width: 50px;
     }
 
+.creit_inner_box{
+    display: flex;
+}
+
     #schedule_day td{
         background-color: #ccc;
     }
