@@ -206,21 +206,33 @@ function sbj_name_find() {
 // 강좌번호검색
 function sbj_num_find() {
   $("#sbj_num_find_btn").click(function () {
-    var send = {
-      sbj_name: $("#sbj_num").val(),
-      radio_box: $("#remain:checked").val(),
-      sbj_type: $("#sbj_type").val(),
-      division: $("#division").val(),
-    };
+    radio_box: $("#remain:checked").val();
+    sbj_num = $("#sbj_num").val();
+    sbj_type = $("#sbj_type").val();
+    division = $("#division").val();
+
+
+    var param = `${
+        sbj_num === ""
+            ? ""
+            : "courseNumber=" + encodeURIComponent($("#sbj_num").val())
+    }&${
+        sbj_type === "" ? "" : "type=" + encodeURIComponent($("#sbj_type").val())
+    }&${
+        division === ""
+            ? ""
+            : "division=" + encodeURIComponent($("#division").val())
+    }`;
+
     $.ajax({
       url: "http://localhost:8080/api/courses", //나중에 수정해야할것
       type: "GET",
       dataType: "json",
-      data: send,
+      data: param,
       contentType: "application/json;charset=UTF-8;",
-      success: function (data) {
+      success: function (result) {
+        console.log(result);
         //테이블 초기화
-        console.log(data);
         $(".subject_info_wrap").empty();
         result?.result?.data?.courseList?.forEach((c) => {
           var subjects =
