@@ -92,14 +92,14 @@ function getSchedule(){
         $(".red").css({
           "width":"50px",
           "height":"30px",
-          "background-color":"lightcoral"
+          "background-color":"red"
         })
 
         // 수강신청
         $(".blue").css({
           "width":"50px",
           "height":"30px",
-          "background-color":"lightblue"
+          "background-color":"blue"
         })
         var th = "<th>" + (i + 1) + "교시" + "</th>";
         $tr.append(th);

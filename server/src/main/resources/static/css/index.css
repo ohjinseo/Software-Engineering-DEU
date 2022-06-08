@@ -222,7 +222,45 @@
     }
 
 
-    /*schedule_wrap*/
+    .schedule .colorBox{
+        width:100%;
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 15px;
+        font-size:14px;
+    }
+
+    .schedule .colorBox .basketColorWrap{
+        display:flex;
+        align-items: center;
+        padding-right: 15px;
+    }
+
+    .schedule .colorBox .signUpColorWrap{
+        display:flex;
+        align-items: center;
+    }
+
+    .schedule .colorBox .basketColor{
+        width:10px;
+        height:10px;
+        background-color:red;
+        border-radius:50%;
+        margin-right: 5px;
+    }
+
+    .schedule .colorBox .signUpColor{
+        width:10px;
+        height:10px;
+        background-color:blue;
+        border-radius:50%;
+        margin-right: 5px;
+    }
+
+
+
+/*schedule_wrap*/
     .schedule_wrap{
       width: 100%;
 
@@ -241,6 +279,8 @@
     #schedule_day th{
         width: 50px;
     }
+
+
 
 .creit_inner_box{
     display: flex;
