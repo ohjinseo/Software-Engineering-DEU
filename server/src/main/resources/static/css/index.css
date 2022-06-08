@@ -235,7 +235,7 @@
       width: 50px;
     }
     #schedule_table td{
-      background-color: #ccc;
+      background-color: lightgray;
     }
 
     #schedule_day th{
@@ -245,8 +245,3 @@
 .creit_inner_box{
     display: flex;
 }
-
-    #schedule_day td{
-        background-color: #ccc;
-    }
-

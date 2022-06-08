@@ -31,45 +31,85 @@ function getSchedule(){
     type: "get",
     success: function (data) {
 
+      console.log(data);
+      $("#schedule_table").empty();
+
+      var days = "<tr>" +
+        "<th>" + "</th>" +
+        "<th>" + "월" + "</th>" +
+        "<th>" + "화" + "</th>" +
+        "<th>" + "수" + "</th>" +
+        "<th>" + "목" + "</th>" +
+        "<th>" + "금" + "</th>" +
+      "</tr>"
+      $("#schedule_table").append(days)
+
       for(i = 0; i < 8; i++){
 
-          var schedule =
-              "<tr>" +
-                "<th>" + (i + 1) + "교시" + "</th>" +
-                "<td class ='class_1'>" + "</td>" +
-                "<td class ='class_2'>"+"  </td>" +
-                "<td class ='class_3'>"+"</td>" +
-                "<td class ='class_4'>"+"</td>" +
-                "<td class ='class_5'>"+"</td>" +
-              "</tr>"
-          if(data?.result?.data?.dates[0][i] !== 0){
-            console.log(i + "교시에 빨강")
-            $(".class_1").css({
-              "background-color":"red"
-            })
-          }
-        else if(data?.result?.data?.dates[1][i] !== 0){
-          $(".class_2").css({
-            "background-color":"red"
-          })
-        }
-          else if(data?.result?.data?.dates[2][i] !== 0){
-            $(".class_3").css({
-              "background-color":"red"
-            })
-          }
-          else if(data?.result?.data?.dates[3][i] !== 0){
-            $(".class_4").css({
-              "background-color":"red"
-            })
-          }
-          else if(data?.result?.data?.dates[4][i] !== 0){
-            $(".class_5").css({
-              "background-color":"red"
-            })
-          }
+        var $tr = $("<tr>",{});
 
-      $("#schedule_table").append(schedule);
+        if(data?.result?.data?.dates[0][i] === 0){
+          var $td1 =  $("<td>");
+        }else if(data?.result?.data?.dates[0][i] === 1){
+          var $td1 =  $("<td>", {class:"red"});
+        }else if(data?.result?.data?.dates[0][i] === 2){
+          var $td1 =  $("<td>", {class:"blue"});
+        }
+
+        if(data?.result?.data?.dates[1][i] === 0){
+          var $td2 =  $("<td>");
+        }else if(data?.result?.data?.dates[1][i] === 1){
+          var $td2 =  $("<td>", {class:"red"});
+        }else if(data?.result?.data?.dates[1][i] === 2){
+          var $td2 =  $("<td>", {class:"blue"});
+        }
+
+        if(data?.result?.data?.dates[2][i] === 0){
+          var $td3 =  $("<td>");
+        }else if(data?.result?.data?.dates[2][i] === 1){
+          var $td3 =  $("<td>", {class:"red"});
+        }else if(data?.result?.data?.dates[2][i] === 2){
+          var $td3 =  $("<td>", {class:"blue"});
+        }
+
+        if(data?.result?.data?.dates[3][i] === 0){
+          var $td4 =  $("<td>");
+        }else if(data?.result?.data?.dates[3][i] === 1){
+          var $td4 =  $("<td>", {class:"red"});
+        }else if(data?.result?.data?.dates[3][i] === 2){
+          var $td4 =  $("<td>", {class:"blue"});
+        }
+
+        if(data?.result?.data?.dates[4][i] === 0){
+          var $td5 =  $("<td>");
+        }else if(data?.result?.data?.dates[4][i] === 1){
+          var $td5 =  $("<td>", {class:"red"});
+        }else if(data?.result?.data?.dates[4][i] === 2){
+          var $td5 =  $("<td>", {class:"blue"});
+        }
+
+        // 장바구니
+        $(".red").css({
+          "width":"50px",
+          "height":"30px",
+          "background-color":"lightcoral"
+        })
+
+        // 수강신청
+        $(".blue").css({
+          "width":"50px",
+          "height":"30px",
+          "background-color":"lightblue"
+        })
+        var th = "<th>" + (i + 1) + "교시" + "</th>";
+        $tr.append(th);
+        $tr.append($td1);
+        $tr.append($td2);
+        $tr.append($td3);
+        $tr.append($td4);
+        $tr.append($td5);
+
+      $("#schedule_table").append($tr);
       }
     },
     error: function (error) {
@@ -421,7 +461,7 @@ function successList() {
       $('#bg3').append(csum);
       $('#bg1').empty();
       $('#bg1').append(21-bsum - csum);
-
+      getSchedule();
     },
     error: function () {
       alert("비동기 처리 오류");
@@ -492,6 +532,7 @@ function basketList() {
       $('#bg2').append(bsum);
       $('#bg1').empty();
       $('#bg1').append(21-bsum - csum);
+      getSchedule();
     },
     error: function () {
       alert("비동기 처리 오류");
